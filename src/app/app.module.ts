@@ -7,6 +7,9 @@ import { LoginInitialComponent } from './Components/LoginComponent/login-initial
 
 import { InputTextModule } from 'primeng/inputtext';
 import { BodyLoginComponent } from './Components/BodyLogin/body-login.component';
+import { AuthenticationService } from './shared/authentication/authentication.service';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,9 +20,13 @@ import { BodyLoginComponent } from './Components/BodyLogin/body-login.component'
   imports: [
     BrowserModule,
     AppRoutingModule,
-    InputTextModule
+    InputTextModule,
+    HttpClientModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [
+    AuthenticationService
+  ],
   bootstrap: [AppComponent, LoginInitialComponent]
 })
 export class AppModule { }

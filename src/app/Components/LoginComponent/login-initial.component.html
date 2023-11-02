@@ -9,17 +9,17 @@
             <div class="row">
                 <span style="margin-bottom: 25px;" class="p-input-icon-left p-float-label">
                     <i class="pi pi-user" style="margin-left: 5px;"></i>
-                    <input style="width: 100%; height: 50px;" id="emailUsuario" pInputText type="text" />
+                    <input style="width: 100%; height: 50px;" id="emailUsuario" pInputText type="text" [(ngModel)]="email"/>
                     <label htmlFor="emailUsuario">E-mail</label>
                 </span>
                 <span class="p-input-icon-left p-float-label">
                     <i class="pi pi-lock" style="margin-left: 5px;"></i>
-                    <input style="width: 100%; height: 50px;" id="senhaUsuario" pInputText type="password" />
+                    <input style="width: 100%; height: 50px;" id="senhaUsuario" pInputText type="password" [(ngModel)]="senha"/>
                     <label htmlFor="senhaUsuario">Senha</label>
                 </span>
             </div>
             <button style="width: 100%; margin-top: 50px; height: 40px;" type="button"
-                class="btn btn-outline-light">Conectar</button>
+                class="btn btn-outline-light" (click)="login()">Conectar</button>
         </div>
     </div>
 </div>
