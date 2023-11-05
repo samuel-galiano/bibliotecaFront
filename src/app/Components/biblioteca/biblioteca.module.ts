@@ -6,7 +6,6 @@ import { FormsModule } from '@angular/forms';
 import { MenuInicialComponent } from './menu-inicial/menu-inicial.component';
 
 
-
 @NgModule({
   declarations: [
     LoginInitialComponent,
@@ -16,6 +15,7 @@ import { MenuInicialComponent } from './menu-inicial/menu-inicial.component';
   imports: [
     CommonModule,
     FormsModule
+    
   ],
   exports: [
     LoginInitialComponent,

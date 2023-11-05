@@ -1,0 +1,15 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Nome</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let autor of autores">
+        <th scope="row">{{autor.id}}</th>
+        <td>{{autor.nome}}</td>
+      </tr>
+    </tbody>
+  </table>
+

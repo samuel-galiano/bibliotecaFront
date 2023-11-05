@@ -9,10 +9,12 @@ import { AuthenticationService } from './shared/authentication/authentication.se
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BibliotecaModule } from './Components/biblioteca/biblioteca.module';
+import { TabelaAutoresComponent } from './Components/tabela-autores/tabela-autores.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TabelaAutoresComponent
   ],
   imports: [
     BrowserModule,
