@@ -1,0 +1,28 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Quantidade Emprestada</th>
+            <th scope="col">Data do Ultimo Empréstimo</th>
+            <th scope="col">Disponível</th>
+            <th scope="col">Editora</th>
+            <th scope="col">Genero</th>
+            <th scope="col">Autor</th>
+            <th scope="col">Pessoa Emprestado</th>
+        </tr>
+    </thead>
+        <tbody>
+            <tr *ngFor="let livro of livros">
+                <th scope="col">{{livro.id}}</th>
+                <th scope="col">{{livro.nome}}</th>
+                <th scope="col">{{livro.quantidadeEmprestada}}</th>
+                <th scope="col"></th>
+                <th scope="col">{{livro.disponivel}}</th>
+                <th scope="col">{{livro.editora!.nome}}</th>
+                <th scope="col">{{livro.genero!.nome}}</th>
+                <th scope="col">{{livro.autor!.nome}}</th>
+                <th scope="col"></th>
+            </tr>
+        </tbody>
+</table>

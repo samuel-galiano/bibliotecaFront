@@ -1,0 +1,14 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nome</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let editora of editoras">
+            <th scope="row">{{editora.id}}</th>
+            <th scope="row">{{editora.nome}}</th>
+        </tr>
+    </tbody>
+</table>

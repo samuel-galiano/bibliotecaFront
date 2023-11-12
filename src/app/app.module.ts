@@ -10,11 +10,19 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BibliotecaModule } from './Components/biblioteca/biblioteca.module';
 import { TabelaAutoresComponent } from './Components/tabela-autores/tabela-autores.component';
+import { TabelaEditorasComponent } from './Components/tabela-editoras/tabela-editoras.component';
+import { TabelaGenerosComponent } from './Components/tabela-generos/tabela-generos.component';
+import { TabelaPessoasComponent } from './Components/tabela-pessoas/tabela-pessoas.component';
+import { TabelaLivrosComponent } from './Components/tabela-livros/tabela-livros.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TabelaAutoresComponent
+    TabelaAutoresComponent,
+    TabelaEditorasComponent,
+    TabelaGenerosComponent,
+    TabelaPessoasComponent,
+    TabelaLivrosComponent
   ],
   imports: [
     BrowserModule,
