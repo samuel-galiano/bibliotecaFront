@@ -30,7 +30,8 @@ import { TabelaLivrosComponent } from './Components/tabela-livros/tabela-livros.
     InputTextModule,
     HttpClientModule,
     FormsModule,
-    BibliotecaModule
+    BibliotecaModule,
+    
   ],
   providers: [
     AuthenticationService

@@ -3,13 +3,20 @@
       <tr>
         <th scope="col">Id</th>
         <th scope="col">Nome</th>
+        <th scope="col">Ações</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let autor of autores">
         <th scope="row">{{autor.id}}</th>
         <td>{{autor.nome}}</td>
+        <td>
+          <button class="btn btn-warning text-white m-2" data-toggle="tooltip" data-placement="bottom" title="Editar"><i class="bi bi-pencil-square"></i></button>
+          <button class="btn btn-danger m-2" data-toggle="tooltip" data-placement="bottom" title="Apagar"><i class="bi bi-trash-fill"></i></button>
+        </td>
       </tr>
     </tbody>
   </table>
+
+
 

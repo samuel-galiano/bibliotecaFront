@@ -10,6 +10,7 @@
             <th scope="col">Genero</th>
             <th scope="col">Autor</th>
             <th scope="col">Pessoa Emprestado</th>
+            <th scope="col">Ações</th>
         </tr>
     </thead>
         <tbody>
@@ -17,12 +18,15 @@
                 <th scope="col">{{livro.id}}</th>
                 <th scope="col">{{livro.nome}}</th>
                 <th scope="col">{{livro.quantidadeEmprestada}}</th>
-                <th scope="col"></th>
+                <th scope="col">{{livro.dataDoUltimoEmprestimo}}</th>
                 <th scope="col">{{livro.disponivel}}</th>
-                <th scope="col">{{livro.editora!.nome}}</th>
-                <th scope="col">{{livro.genero!.nome}}</th>
-                <th scope="col">{{livro.autor!.nome}}</th>
+                <th scope="col">{{livro.editora?.nome}}</th>
+                <th scope="col">{{livro.genero?.nome}}</th>
+                <th scope="col">{{livro.autor?.nome}}</th>
+                <th scope="col" *ngIf="livro.pessoaEmprestado">{{livro.pessoaEmprestado.nome}}</th>
+                <th scope="col" *ngIf="!livro.pessoaEmprestado">Este livro não está emprestado</th>
                 <th scope="col"></th>
             </tr>
+            
         </tbody>
 </table>
