@@ -13,10 +13,14 @@ export class PessoaService {
   private token = localStorage.getItem('token');
 
   headers: HttpHeaders  = new HttpHeaders({'Authorization': `Bearer ${this.token}`});
-  
+
   constructor(private http: HttpClient) { }
 
   public listarPessoas(): Observable<Pessoa[]>{
     return this.http.get<Pessoa[]>(`${this.apiUrl}/pessoas`, {headers: this.headers})
+  }
+
+  public criarPessoa(formulario: Pessoa): Observable<Pessoa>{
+    return this.http.post<Pessoa>(`${this.apiUrl}/pessoas`, formulario, {headers: this.headers})
   }
 }

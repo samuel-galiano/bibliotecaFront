@@ -1,4 +1,9 @@
 <p-table [value]="pessoas" styleClass="p-datatable-striped" [tableStyle]="{'min-width': '50rem'}">
+  <ng-template pTemplate="caption">
+    <div class="flex align-items-center justify-content-between">
+        <button class="btn btn-primary" (click)="abrirDialogParaCriarPessoa()"><i class="bi bi-plus-lg"></i> Adicionar Pessoa</button>
+    </div>
+  </ng-template>
     <ng-template pTemplate="header">
         <tr>
             <th>Id</th>
@@ -20,7 +25,7 @@
     </ng-template>
     <ng-template pTemplate="summary">
       <div class="flex align-items-center justify-content-between">
-          Total de Pessoas: {{pessoas ? pessoas.length : 0 }} 
+          Total de Pessoas: {{pessoas ? pessoas.length : 0 }}
       </div>
   </ng-template>
   </p-table>
@@ -36,4 +41,24 @@
       <button class="btn btn-danger m-2"><i class="bi bi-arrow-left"></i> Voltar</button>
       <button class="btn btn-success m-2"><i class="bi bi-check"></i> Confirmar</button>
     </p-footer>
+</p-dialog>
+
+
+<p-dialog header="Adicionar Pessoa" [(visible)]="visibleDialogCriarPessoa" [style]="{width: '50vw'}" [draggable]="false" [closable]="false">
+  <div class="container">
+    <label for="nome-pessoa">Nome da Pessoa</label>
+    <input type="text" class="form-control" id="nome-pessoa" required [(ngModel)]="nomeDaPessoa" #nomePessoaInput="ngModel">
+    <div *ngIf="nomePessoaInput.invalid && (nomePessoaInput.dirty || nomePessoaInput.touched)" class="text-danger">
+      Nome da Pessoa é obrigatório.
+    </div>
+    <label for="endereco-pessoa">Endereço da Pessoa</label>
+    <input type="text" class="form-control" id="endereco-pessoa" required [(ngModel)]="enderecoDaPessoa" #enderecoPessoaInput="ngModel">
+    <div *ngIf="enderecoPessoaInput.invalid && (enderecoPessoaInput.dirty || enderecoPessoaInput.touched)" class="text-danger">
+      Endereço da Pessoa é obrigatório.
+    </div>
+    <p-footer>
+      <button class="btn btn-danger m-2" (click)="fecharDialogParaCriarPessoa()"><i class="bi bi-arrow-left"></i> Voltar</button>
+      <button class="btn btn-success m-2" (click)="criaNovaPessoa()" [disabled]="!nomePessoaInput.valid && !enderecoPessoaInput.valid"><i class="bi bi-check"></i> Confirmar</button>
+    </p-footer>
+  </div>
 </p-dialog>

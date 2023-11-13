@@ -21,4 +21,8 @@ export class EditoraService {
   public listarEditoras(): Observable<Editora[]>{
     return this.http.get<Editora[]>(`${this.apiUrl}/editoras`, {headers: this.headers})
   }
+
+  public criarEditora(formulario: Editora): Observable<Editora>{
+    return this.http.post<Editora>(`${this.apiUrl}/editoras`, formulario, {headers: this.headers})
+  }
 }

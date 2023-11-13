@@ -1,4 +1,9 @@
 <p-table [value]="livros" styleClass="p-datatable-striped" [tableStyle]="{'min-width': '50rem'}">
+  <ng-template pTemplate="caption">
+    <div class="flex align-items-center justify-content-between">
+      <button class="btn btn-primary" (click)="abrirDialogParaCriarLivro()"><i class="bi bi-plus-lg"></i> Adicionar Pessoa</button>
+  </div>
+  </ng-template>
     <ng-template pTemplate="header">
         <tr>
             <th>Id</th>
@@ -33,13 +38,13 @@
     </ng-template>
     <ng-template pTemplate="summary">
       <div class="flex align-items-center justify-content-between">
-          Total de Livros: {{livros ? livros.length : 0 }} 
+          Total de Livros: {{livros ? livros.length : 0 }}
       </div>
   </ng-template>
   </p-table>
 
 
-  <p-dialog header="Editar Livro" [(visible)]="visibleDialogEditarLivro" [style]="{width: '50vw'}" [draggable]="false">
+  <p-dialog header="Editar Livro" [(visible)]="visibleDialogEditarLivro" [style]="{width: '50vw'}" [draggable]="false" [closable]="false">
     <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
         consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
@@ -49,3 +54,31 @@
       <button class="btn btn-success m-2"><i class="bi bi-check"></i> Confirmar</button>
     </p-footer>
 </p-dialog>
+
+
+<p-dialog header="Criar Livro" [(visible)]="visibleDialogCriarLivro" [style]="{ width: '50vw', height: '700px' }" [draggable]="false" [closable]="false" [blockScroll]="true">
+  <div class="container">
+    <label for="nome-livro">Nome do Livro</label>
+    <input type="text" class="form-control" id="nome-livro" required>
+    <p>Nome Da Editora</p>
+    <p-dropdown [options]="editoras" optionLabel="nome" [(ngModel)]="editoraSelecionada"  placeholder="Selecione uma editora"></p-dropdown>
+    <p>Nome do Genero</p>
+    <p-dropdown [options]="generos" optionLabel="nome" [(ngModel)]="generoSelecionado" placeholder="Selecione um genero"></p-dropdown>
+    <p>Pessoa Emprestado</p>
+    <p-dropdown [options]="pessoas" optionLabel="nome" [(ngModel)]="pessoaSelecionada"></p-dropdown>
+    <br>
+    <label for="quantidade-emprestada">Quantidade Emprestada</label>
+    <input type="number" class="form-control" id="quantidade-emprestada">
+    <label for="data-emprestado">Data do Último Empréstimo</label>
+    <input type="date" class="form-control" id="data-emprestado" required>
+    <br>
+    <p>Está Disponível?</p>
+    <p-selectButton [options]="stateOptions" [(ngModel)]="value" optionLabel="label" optionValue="value"></p-selectButton>
+  </div>
+  <p-footer>
+    <button class="btn btn-danger m-2" (click)="fecharDialogParaCriarLivro()"><i class="bi bi-arrow-left"></i> Voltar</button>
+      <button class="btn btn-success m-2" ><i class="bi bi-check"></i> Confirmar</button>
+  </p-footer>
+</p-dialog>
+
+

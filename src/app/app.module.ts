@@ -17,6 +17,8 @@ import { TabelaPessoasComponent } from './Components/tabela-pessoas/tabela-pesso
 import { TabelaLivrosComponent } from './Components/tabela-livros/tabela-livros.component';
 import { DialogModule } from 'primeng/dialog';
 import { TableModule } from 'primeng/table';
+import { DropdownModule } from 'primeng/dropdown';
+import { SelectButtonModule } from 'primeng/selectbutton';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { TableModule } from 'primeng/table';
     BibliotecaModule,
     DialogModule,
     BrowserAnimationsModule,
-    TableModule
+    TableModule,
+    DropdownModule,
+    SelectButtonModule
   ],
   providers: [
     AuthenticationService

@@ -15,6 +15,12 @@ export class TabelaEditorasComponent {
 
   public visibleDialogEditarEditora: boolean = false;
 
+  public visibleDialogCriarEditora: boolean = false;
+
+  public nomeDaEditora: string = "";
+
+  public formularioParaCriarNovaEditora: Editora = new Editora();
+
   ngOnInit(): void {
     this.buscarInformacoesEditoras();
   }
@@ -28,5 +34,23 @@ export class TabelaEditorasComponent {
 
   public abrirDialogParaEditarEditora(): void{
     this.visibleDialogEditarEditora = true;
+  }
+
+  public abrirDialogParaCriarEditora(): void{
+    this.visibleDialogCriarEditora = true;
+  }
+
+  public fecharDialogParaCriarEditora(): void{
+    this.visibleDialogCriarEditora = false;
+  }
+
+  public criaNovaEditora(): void{
+    this.formularioParaCriarNovaEditora.nome = this.nomeDaEditora;
+    this.editoraService.criarEditora(this.formularioParaCriarNovaEditora).subscribe(() => {
+      console.log("Deu Certo!");
+      this.visibleDialogCriarEditora = false;
+      this.buscarInformacoesEditoras();
+      this.nomeDaEditora = '';
+    })
   }
 }

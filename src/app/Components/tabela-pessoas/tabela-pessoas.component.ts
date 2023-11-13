@@ -15,6 +15,14 @@ export class TabelaPessoasComponent {
 
   public visibleDialogEditarPessoa: boolean = false;
 
+  public visibleDialogCriarPessoa: boolean = false;
+
+  public nomeDaPessoa: string = "";
+
+  public enderecoDaPessoa: string = "";
+
+  public formularioParaCriarNovaPessoa: Pessoa = new Pessoa();
+
   ngOnInit(){
     this.buscarInformacoesPessoas();
   }
@@ -28,5 +36,26 @@ export class TabelaPessoasComponent {
 
   public abrirDialogParaEditarPessoa(){
     this.visibleDialogEditarPessoa = true;
+  }
+
+  public abrirDialogParaCriarPessoa(){
+    this.visibleDialogCriarPessoa = true;
+  }
+
+  public fecharDialogParaCriarPessoa(){
+    this.visibleDialogCriarPessoa = false;
+  }
+
+  public criaNovaPessoa(): void{
+    this.formularioParaCriarNovaPessoa.nome = this.nomeDaPessoa;
+    this.formularioParaCriarNovaPessoa.endereco = this.enderecoDaPessoa;
+
+    this.pessoaService.criarPessoa(this.formularioParaCriarNovaPessoa).subscribe(() => {
+      console.log("Deu Certo!");
+      this.visibleDialogCriarPessoa = false;
+      this.buscarInformacoesPessoas();
+      this.nomeDaPessoa = '';
+      this.enderecoDaPessoa = '';
+    })
   }
 }
