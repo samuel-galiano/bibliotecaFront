@@ -1,4 +1,9 @@
 <p-table [value]="autores" styleClass="p-datatable-striped" [tableStyle]="{'min-width': '50rem'}">
+  <ng-template pTemplate="caption">
+    <div class="flex align-items-center justify-content-between">
+        <button class="btn btn-primary" (click)="abrirDialogParaCriarAutor()"><i class="bi bi-plus-lg"></i> Adicionar Autor</button>
+    </div>
+  </ng-template>
   <ng-template pTemplate="header">
       <tr>
           <th>Id</th>
@@ -16,6 +21,11 @@
           </td>
       </tr>
   </ng-template>
+  <ng-template pTemplate="summary">
+    <div class="flex align-items-center justify-content-between">
+        Total de Autores: {{autores ? autores.length : 0 }} 
+    </div>
+</ng-template>
 </p-table>
 
 
@@ -28,4 +38,18 @@
       <button class="btn btn-danger m-2"><i class="bi bi-arrow-left"></i> Voltar</button>
       <button class="btn btn-success m-2"><i class="bi bi-check"></i> Confirmar</button>
     </p-footer>
+</p-dialog>
+
+<p-dialog header="Adicionar Autor" [(visible)]="visibleDialogCriarAutor" [style]="{width: '50vw'}" [draggable]="false" [closable]="false">
+  <div class="container">
+    <label for="nome-autor">Nome do Autor</label>
+    <input type="text" class="form-control" id="nome-autor" required [(ngModel)]="nomeDoAutor" #nomeAutorInput="ngModel">
+    <div *ngIf="nomeAutorInput.invalid && (nomeAutorInput.dirty || nomeAutorInput.touched)" class="text-danger">
+      Nome do Autor é obrigatório.
+    </div>
+  </div>
+  <p-footer>
+    <button class="btn btn-danger m-2" (click)="fechaDialogParaCriarAutor()"><i class="bi bi-arrow-left"></i> Voltar</button>
+    <button class="btn btn-success m-2" (click)="criaNovoAutor()" [disabled]="!nomeAutorInput.valid"><i class="bi bi-check"></i> Confirmar</button>
+  </p-footer>
 </p-dialog>

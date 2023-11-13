@@ -20,4 +20,8 @@ export class AutorService {
   public listarAutores(): Observable<Autor[]>{
     return this.http.get<Autor[]>(`${this.apiUrl}/autores`, { headers: this.headers });
   }
+
+  public criarAutor(formulario: Autor): Observable<Autor>{
+    return this.http.post<Autor>(`${this.apiUrl}/autores`, formulario, { headers: this.headers})
+  }
 }

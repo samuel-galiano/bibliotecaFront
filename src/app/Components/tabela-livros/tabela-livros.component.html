@@ -31,6 +31,11 @@
             </td>
         </tr>
     </ng-template>
+    <ng-template pTemplate="summary">
+      <div class="flex align-items-center justify-content-between">
+          Total de Livros: {{livros ? livros.length : 0 }} 
+      </div>
+  </ng-template>
   </p-table>
 
 
