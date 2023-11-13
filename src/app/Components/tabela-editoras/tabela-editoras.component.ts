@@ -9,9 +9,11 @@ import { EditoraService } from 'src/app/shared/services/editora.service';
 })
 export class TabelaEditorasComponent {
 
-  constructor(private editoraService: EditoraService){}
+  constructor(private editoraService: EditoraService) { }
 
   public editoras: Editora[] = [];
+
+  public visibleDialogEditarEditora: boolean = false;
 
   ngOnInit(): void {
     this.buscarInformacoesEditoras();
@@ -21,8 +23,10 @@ export class TabelaEditorasComponent {
     this.editoraService.listarEditoras().subscribe((dados: Editora[]) => {
       this.editoras = dados;
       console.log(dados);
-    }
-    
-    )
+    })
+  }
+
+  public abrirDialogParaEditarEditora(): void{
+    this.visibleDialogEditarEditora = true;
   }
 }

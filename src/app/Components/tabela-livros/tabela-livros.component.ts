@@ -13,8 +13,14 @@ export class TabelaLivrosComponent {
 
   public livros: Livro[] = [];
 
+  public visibleDialogEditarLivro: boolean = false;
+
   ngOnInit(){
     this.buscarInformacoesLivros();
+  }
+
+  public abrirDialogParaEditarLivro(){
+    this.visibleDialogEditarLivro = true;
   }
 
 

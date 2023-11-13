@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { InputTextModule } from 'primeng/inputtext';
 import { AuthenticationService } from './shared/authentication/authentication.service';
@@ -14,6 +15,8 @@ import { TabelaEditorasComponent } from './Components/tabela-editoras/tabela-edi
 import { TabelaGenerosComponent } from './Components/tabela-generos/tabela-generos.component';
 import { TabelaPessoasComponent } from './Components/tabela-pessoas/tabela-pessoas.component';
 import { TabelaLivrosComponent } from './Components/tabela-livros/tabela-livros.component';
+import { DialogModule } from 'primeng/dialog';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,9 @@ import { TabelaLivrosComponent } from './Components/tabela-livros/tabela-livros.
     HttpClientModule,
     FormsModule,
     BibliotecaModule,
-    
+    DialogModule,
+    BrowserAnimationsModule,
+    TableModule
   ],
   providers: [
     AuthenticationService

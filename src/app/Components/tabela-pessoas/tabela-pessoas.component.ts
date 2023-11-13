@@ -13,6 +13,8 @@ export class TabelaPessoasComponent {
 
   public pessoas: Pessoa[] = [];
 
+  public visibleDialogEditarPessoa: boolean = false;
+
   ngOnInit(){
     this.buscarInformacoesPessoas();
   }
@@ -22,5 +24,9 @@ export class TabelaPessoasComponent {
       this.pessoas = dados;
       console.log(dados);
     })
+  }
+
+  public abrirDialogParaEditarPessoa(){
+    this.visibleDialogEditarPessoa = true;
   }
 }

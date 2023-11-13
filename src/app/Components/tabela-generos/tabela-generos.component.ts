@@ -13,8 +13,14 @@ export class TabelaGenerosComponent {
 
   public generos: Genero[] = [];
 
+  public visibleDialogEditarGenero: boolean = false;
+
   ngOnInit(){
     this.buscarInformacoesGeneros();
+  }
+
+  public abrirDialogParaEditarGenero(){
+    this.visibleDialogEditarGenero = true;
   }
 
   public buscarInformacoesGeneros(){

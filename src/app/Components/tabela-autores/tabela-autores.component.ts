@@ -13,8 +13,15 @@ export class TabelaAutoresComponent {
 
   public autores: Autor[] = [];
 
+  public visibleDialogEditarAutor: boolean = false;
+
   ngOnInit(): void {
     this.buscarInformacoesClientes();
+    
+  }
+
+  public abrirDialogParaEditarAutor(){
+    this.visibleDialogEditarAutor = true;
   }
 
   public buscarInformacoesClientes(): void {
