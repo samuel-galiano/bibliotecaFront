@@ -1,8 +1,13 @@
-<p-table [value]="livros" styleClass="p-datatable-striped" [tableStyle]="{'min-width': '50rem'}">
+<p-table [value]="livros" styleClass="p-datatable-striped" [tableStyle]="{'min-width': '50rem'}" #dt1 [globalFilterFields]="['nome', 'livro.nome']">
   <ng-template pTemplate="caption">
     <div class="flex align-items-center justify-content-between">
       <button class="btn btn-primary" (click)="abrirDialogParaCriarLivro()"><i class="bi bi-plus-lg"></i> Adicionar Pessoa</button>
   </div>
+  <br>
+    <span class="p-input-icon-left ml-auto">
+      <i class="pi pi-search"></i>
+      <input #inputSearch pInputText type="text" class="form-con" (input)="dt1.filterGlobal(inputSearch.value, 'contains')" placeholder="Pesquisar Livro" />
+  </span>
   </ng-template>
     <ng-template pTemplate="header">
         <tr>
@@ -24,7 +29,8 @@
             <td>{{ livro.nome }}</td>
             <td>{{livro.quantidadeEmprestada}}</td>
             <td>{{livro.dataDoUltimoEmprestimo}}</td>
-            <td>{{livro.disponivel}}</td>
+            <td *ngIf="livro.disponivel">Sim</td>
+            <td *ngIf="!livro.disponivel">Não</td>
             <td>{{livro.editora?.nome}}</td>
             <td>{{livro.genero?.nome}}</td>
             <td>{{livro.autor?.nome}}</td>

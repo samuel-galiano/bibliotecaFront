@@ -1,8 +1,13 @@
-<p-table [value]="generos" styleClass="p-datatable-striped" [tableStyle]="{'min-width': '50rem'}">
+<p-table [value]="generos" styleClass="p-datatable-striped" [tableStyle]="{'min-width': '50rem'}" #dt1 [globalFilterFields]="['nome', 'genero.nome']">
     <ng-template pTemplate="caption">
       <div class="flex align-items-center justify-content-between">
         <button class="btn btn-primary" (click)="abrirDialogParaCriarGenero()"><i class="bi bi-plus-lg"></i> Adicionar Genero</button>
       </div>
+      <br>
+    <span class="p-input-icon-left ml-auto">
+      <i class="pi pi-search"></i>
+      <input #inputSearch pInputText type="text" class="form-con" (input)="dt1.filterGlobal(inputSearch.value, 'contains')" placeholder="Pesquisar Genero" />
+  </span>
     </ng-template>
     <ng-template pTemplate="header">
         <tr>
