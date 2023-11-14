@@ -1,0 +1,16 @@
+<p-table [value]="livrosPorAutorEGenero" styleClass="p-datatable-striped" [tableStyle]="{'min-width': '50rem'}" #dt1 [globalFilterFields]="['nome', 'livro.nome']">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Nome do Autor</th>
+            <th>Nome do Genero</th>
+            <th>Quantidade De Livros</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-livro>
+        <tr>
+            <td>{{livro.nomeAutor}}</td>
+            <td>{{livro.nomeGenero}}</td>
+            <td>{{livro.quantidadeLivros}}</td>
+        </tr>
+    </ng-template>
+</p-table>

@@ -19,6 +19,7 @@ import { DialogModule } from 'primeng/dialog';
 import { TableModule } from 'primeng/table';
 import { DropdownModule } from 'primeng/dropdown';
 import { SelectButtonModule } from 'primeng/selectbutton';
+import { LivrosPorAutorEGeneroComponent } from './Components/livros-por-autor-e-genero/livros-por-autor-e-genero.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { SelectButtonModule } from 'primeng/selectbutton';
     TabelaEditorasComponent,
     TabelaGenerosComponent,
     TabelaPessoasComponent,
-    TabelaLivrosComponent
+    TabelaLivrosComponent,
+    LivrosPorAutorEGeneroComponent
   ],
   imports: [
     BrowserModule,
