@@ -1,0 +1,23 @@
+<p-table [value]="transacoes" styleClass="p-datatable-striped" [tableStyle]="{'min-width': '50rem'}" #dt1>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Id</th>
+      <th>Data</th>
+      <th>Tipo</th>
+      <th>Livro</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-transacao>
+    <tr>
+      <td>{{transacao.id}}</td>
+      <td>{{transacao.data}}</td>
+      <td>{{transacao.tipo}}</td>
+      <td>{{transacao.livro.nome}}</td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="summary">
+    <div class="flex align-items-center justify-content-between">
+      Total de Transações: {{transacoes ? transacoes.length : 0}}
+    </div>
+  </ng-template>
+</p-table>

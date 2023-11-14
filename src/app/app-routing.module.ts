@@ -9,6 +9,8 @@ import { TabelaGenerosComponent } from './Components/tabela-generos/tabela-gener
 import { TabelaPessoasComponent } from './Components/tabela-pessoas/tabela-pessoas.component';
 import { TabelaLivrosComponent } from './Components/tabela-livros/tabela-livros.component';
 import { LivrosPorAutorEGeneroComponent } from './Components/livros-por-autor-e-genero/livros-por-autor-e-genero.component';
+import { TabelaTransacaoComponent } from './Components/tabela-transacao/tabela-transacao.component';
+import { TabelaVendasComponent } from './Components/tabela-vendas/tabela-vendas.component';
 
 const routes: Routes = [
   {path: '', component: LoginInitialComponent},
@@ -19,6 +21,8 @@ const routes: Routes = [
   {path: 'tabela-pessoas', component: TabelaPessoasComponent, canActivate: [CustomAuthGuard]},
   {path: 'tabela-livros', component: TabelaLivrosComponent, canActivate: [CustomAuthGuard]},
   {path: 'tabela-livros-por-autor-e-genero', component: LivrosPorAutorEGeneroComponent, canActivate: [CustomAuthGuard]},
+  {path: 'tabela-transacoes', component: TabelaTransacaoComponent, canActivate: [CustomAuthGuard]},
+  {path: 'tabela-vendas', component: TabelaVendasComponent, canActivate: [CustomAuthGuard]},
 ];
 
 @NgModule({

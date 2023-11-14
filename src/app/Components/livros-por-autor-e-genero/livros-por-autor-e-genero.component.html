@@ -1,4 +1,10 @@
-<p-table [value]="livrosPorAutorEGenero" styleClass="p-datatable-striped" [tableStyle]="{'min-width': '50rem'}" #dt1 [globalFilterFields]="['nome', 'livro.nome']">
+<p-table [value]="livrosPorAutorEGenero" styleClass="p-datatable-striped" [tableStyle]="{'min-width': '50rem'}" #dt1 [globalFilterFields]="['nomeAutor', 'livro.nomeAutor']">
+  <ng-template pTemplate="caption">
+    <span class="p-input-icon-left ml-auto">
+      <i class="pi pi-search"></i>
+      <input #inputSearch pInputText type="text" class="form-con" (input)="dt1.filterGlobal(inputSearch.value, 'contains')" placeholder="Pesquisar Autor" />
+  </span>
+  </ng-template>
     <ng-template pTemplate="header">
         <tr>
             <th>Nome do Autor</th>
@@ -12,5 +18,10 @@
             <td>{{livro.nomeGenero}}</td>
             <td>{{livro.quantidadeLivros}}</td>
         </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <div class="flex align-items-center justify-content-between">
+        Total de Autores: {{livrosPorAutorEGenero ? livrosPorAutorEGenero.length : 0}}
+      </div>
     </ng-template>
 </p-table>
