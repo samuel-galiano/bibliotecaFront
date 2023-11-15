@@ -1,0 +1,22 @@
+<p-table [value]="vendasPorMes" styleClass="p-datatable-striped" [tableStyle]="{'min-width': '50rem'}" #dt1>
+    <ng-template pTemplate="caption">
+        <h3>Vendas Por Mês</h3>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Mes</th>
+            <th>Total de Vendas</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-vendaMes>
+        <tr>
+            <td>{{vendaMes.mes}}</td>
+            <td>{{vendaMes.totalVendas}}</td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+        <div class="flex align-items-center justify-content-between">
+          Total de Meses Contabilizados: {{vendasPorMes ? vendasPorMes.length : 0}}
+        </div>
+      </ng-template>
+</p-table>

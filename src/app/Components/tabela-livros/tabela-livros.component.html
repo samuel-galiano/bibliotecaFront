@@ -65,25 +65,27 @@
 <p-dialog header="Criar Livro" [(visible)]="visibleDialogCriarLivro" [style]="{ width: '50vw', height: '700px' }" [draggable]="false" [closable]="false" [blockScroll]="true">
   <div class="container">
     <label for="nome-livro">Nome do Livro</label>
-    <input type="text" class="form-control" id="nome-livro" required>
+    <input type="text" class="form-control" id="nome-livro" required [(ngModel)]="nomeDoLivro">
     <p>Nome Da Editora</p>
     <p-dropdown [options]="editoras" optionLabel="nome" [(ngModel)]="editoraSelecionada"  placeholder="Selecione uma editora"></p-dropdown>
     <p>Nome do Genero</p>
     <p-dropdown [options]="generos" optionLabel="nome" [(ngModel)]="generoSelecionado" placeholder="Selecione um genero"></p-dropdown>
+    <p>Nome do Autor</p>
+    <p-dropdown [options]="autores" optionLabel="nome" [(ngModel)]="autorSelecionado" placeholder="Selecione um autor"></p-dropdown>
     <p>Pessoa Emprestado</p>
     <p-dropdown [options]="pessoas" optionLabel="nome" [(ngModel)]="pessoaSelecionada"></p-dropdown>
     <br>
     <label for="quantidade-emprestada">Quantidade Emprestada</label>
-    <input type="number" class="form-control" id="quantidade-emprestada">
+    <input type="number" class="form-control" id="quantidade-emprestada" [(ngModel)]="quantidadeEmprestada">
     <label for="data-emprestado">Data do Último Empréstimo</label>
-    <input type="date" class="form-control" id="data-emprestado" required>
+    <input type="date" class="form-control" id="data-emprestado" required [(ngModel)]="dataDoUltimoEmprestimo">
     <br>
     <p>Está Disponível?</p>
     <p-selectButton [options]="stateOptions" [(ngModel)]="value" optionLabel="label" optionValue="value"></p-selectButton>
   </div>
   <p-footer>
     <button class="btn btn-danger m-2" (click)="fecharDialogParaCriarLivro()"><i class="bi bi-arrow-left"></i> Voltar</button>
-      <button class="btn btn-success m-2" ><i class="bi bi-check"></i> Confirmar</button>
+      <button class="btn btn-success m-2" (click)="criaNovoLivro()"><i class="bi bi-check"></i> Confirmar</button>
   </p-footer>
 </p-dialog>
 

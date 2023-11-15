@@ -11,6 +11,7 @@ import { TabelaLivrosComponent } from './Components/tabela-livros/tabela-livros.
 import { LivrosPorAutorEGeneroComponent } from './Components/livros-por-autor-e-genero/livros-por-autor-e-genero.component';
 import { TabelaTransacaoComponent } from './Components/tabela-transacao/tabela-transacao.component';
 import { TabelaVendasComponent } from './Components/tabela-vendas/tabela-vendas.component';
+import { TabelaVendasPorMesComponent } from './Components/tabela-vendas-por-mes/tabela-vendas-por-mes.component';
 
 const routes: Routes = [
   {path: '', component: LoginInitialComponent},
@@ -23,6 +24,7 @@ const routes: Routes = [
   {path: 'tabela-livros-por-autor-e-genero', component: LivrosPorAutorEGeneroComponent, canActivate: [CustomAuthGuard]},
   {path: 'tabela-transacoes', component: TabelaTransacaoComponent, canActivate: [CustomAuthGuard]},
   {path: 'tabela-vendas', component: TabelaVendasComponent, canActivate: [CustomAuthGuard]},
+  {path: 'tabela-vendas-por-mes', component: TabelaVendasPorMesComponent, canActivate: [CustomAuthGuard]}
 ];
 
 @NgModule({

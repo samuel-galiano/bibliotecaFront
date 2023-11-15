@@ -24,4 +24,8 @@ export class LivroService {
   public listarLivrosPorAutoreGenero(): Observable<LivroCount[]>{
     return this.http.get<LivroCount[]>(`${this.apiUrl}/livros/consulta-agrupamento`, {headers: this.headers})
   }
+
+  public criarLivro(formulario: Livro): Observable<Livro>{
+    return this.http.post<Livro>(`${this.apiUrl}/livros`, formulario, {headers: this.headers})
+  }
 }

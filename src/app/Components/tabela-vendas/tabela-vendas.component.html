@@ -1,1 +1,24 @@
-<p>tabela-vendas works!</p>
+<p-table [value]="vendas" styleClass="p-datatable-striped" [tableStyle]="{'min-width': '50rem'}" #dt1>
+    <ng-template pTemplate="caption">
+        <h3>Todas as Vendas</h3>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Id</th>
+            <th>Data da Venda</th>
+            <th>Valor</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-venda>
+        <tr>
+            <td>{{venda.id}}</td>
+            <td>{{venda.dataVenda}}</td>
+            <td>{{venda.valor}}</td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+        <div class="flex align-items-center justify-content-between">
+          Total de Vendas: {{vendas ? vendas.length : 0}}
+        </div>
+      </ng-template>
+</p-table>

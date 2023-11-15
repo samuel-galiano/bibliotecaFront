@@ -22,6 +22,7 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { LivrosPorAutorEGeneroComponent } from './Components/livros-por-autor-e-genero/livros-por-autor-e-genero.component';
 import { TabelaTransacaoComponent } from './Components/tabela-transacao/tabela-transacao.component';
 import { TabelaVendasComponent } from './Components/tabela-vendas/tabela-vendas.component';
+import { TabelaVendasPorMesComponent } from './Components/tabela-vendas-por-mes/tabela-vendas-por-mes.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { TabelaVendasComponent } from './Components/tabela-vendas/tabela-vendas.
     TabelaLivrosComponent,
     LivrosPorAutorEGeneroComponent,
     TabelaTransacaoComponent,
-    TabelaVendasComponent
+    TabelaVendasComponent,
+    TabelaVendasPorMesComponent
   ],
   imports: [
     BrowserModule,

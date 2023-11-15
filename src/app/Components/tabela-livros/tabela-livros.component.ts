@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import { Autor } from 'src/app/shared/model/Autor';
 import { Editora } from 'src/app/shared/model/Editora';
 import { Genero } from 'src/app/shared/model/Genero';
 import { Livro } from 'src/app/shared/model/Livro';
 import { Pessoa } from 'src/app/shared/model/Pessoa';
+import { AutorService } from 'src/app/shared/services/autor.service';
 import { EditoraService } from 'src/app/shared/services/editora.service';
 import { GeneroService } from 'src/app/shared/services/genero.service';
 import { LivroService } from 'src/app/shared/services/livro.service';
@@ -15,7 +17,7 @@ import { PessoaService } from 'src/app/shared/services/pessoa.service';
 })
 export class TabelaLivrosComponent {
 
-  constructor(private livroService: LivroService, private editoraService: EditoraService, private generoService: GeneroService, private pessoaService: PessoaService){}
+  constructor(private livroService: LivroService, private editoraService: EditoraService, private generoService: GeneroService, private pessoaService: PessoaService, private autorService: AutorService){}
 
   public livros: Livro[] = [];
 
@@ -35,15 +37,28 @@ export class TabelaLivrosComponent {
 
   public pessoaSelecionada: Pessoa = new Pessoa();
 
-  stateOptions: any[] = [{label: 'Sim', value: 'sim'}, {label: 'Não', value: 'nao'}];
+  public quantidadeEmprestada: Number | undefined;
 
-  value: string = 'off';
+  stateOptions: any[] = [{label: 'Sim', value: true}, {label: 'Não', value: false}];
+
+  public dataDoUltimoEmprestimo: String = "";
+
+  value: string = 'false';
+
+  public formularioParaCriarNovoLivro: Livro = new Livro();
+
+  public nomeDoLivro: String = "";
+
+  public autores: Autor[] = [];
+
+  public autorSelecionado: Autor = new Autor();
 
   ngOnInit(){
     this.buscarInformacoesLivros();
     this.buscarEditoras();
     this.buscarGeneros();
     this.buscarPessoas();
+    this.buscarAutor();
   }
 
   public abrirDialogParaEditarLivro(){
@@ -84,6 +99,29 @@ export class TabelaLivrosComponent {
     this.pessoaService.listarPessoas().subscribe((dados: Pessoa[]) => {
       this.pessoas = dados;
       console.log(dados);
+    })
+  }
+
+  public buscarAutor(){
+    this.autorService.listarAutores().subscribe((dados: Autor[]) => {
+      this.autores = dados;
+    })
+  }
+
+  public criaNovoLivro(): void{
+    this.formularioParaCriarNovoLivro.nome = this.nomeDoLivro;
+    this.formularioParaCriarNovoLivro.editora = this.editoraSelecionada;
+    this.formularioParaCriarNovoLivro.genero = this.generoSelecionado;
+    this.formularioParaCriarNovoLivro.autor = this.autorSelecionado;
+    this.formularioParaCriarNovoLivro.pessoaEmprestado = this.pessoaSelecionada;
+    this.formularioParaCriarNovoLivro.quantidadeEmprestada = this.quantidadeEmprestada;
+    this.formularioParaCriarNovoLivro.dataDoUltimoEmprestimo = this.dataDoUltimoEmprestimo;
+    this.formularioParaCriarNovoLivro.disponivel = this.value;
+
+    this.livroService.criarLivro(this.formularioParaCriarNovoLivro).subscribe(() => {
+      console.log("Funcionou!");
+      this.visibleDialogCriarLivro = false;
+      this.buscarInformacoesLivros();
     })
   }
 }
