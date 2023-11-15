@@ -1,7 +1,7 @@
 <p-table [value]="livros" styleClass="p-datatable-striped" [tableStyle]="{'min-width': '50rem'}" #dt1 [globalFilterFields]="['nome', 'livro.nome']">
   <ng-template pTemplate="caption">
     <div class="flex align-items-center justify-content-between">
-      <button class="btn btn-primary" (click)="abrirDialogParaCriarLivro()"><i class="bi bi-plus-lg"></i> Adicionar Pessoa</button>
+      <button class="btn btn-primary" (click)="abrirDialogParaCriarLivro()"><i class="bi bi-plus-lg"></i> Adicionar Livro</button>
   </div>
   <br>
     <span class="p-input-icon-left ml-auto">
@@ -39,6 +39,8 @@
             <td>
               <button class="btn btn-warning text-white m-2" data-toggle="tooltip" data-placement="bottom" title="Editar" (click)="abrirDialogParaEditarLivro()"><i class="bi bi-pencil-square"></i></button>
               <button class="btn btn-danger m-2" data-toggle="tooltip" data-placement="bottom" title="Apagar"><i class="bi bi-trash-fill"></i></button>
+              <button class="btn btn-success m-2" data-toggle="tooltip" data-placement="bottom" title="Emprestar Livro" (click)="abrirDialogParaEmprestarLivro(livro)" [disabled]="!livro.disponivel"><i class="bi bi-box-arrow-up-right"></i></button>
+              <button class="btn btn-primary m-2" data-toggle="tooltip" data-placement="bottom" title="Devolver Livro" (click)="abrirDialogParaDevolverLivro(livro)" [disabled]="livro.disponivel"><i class="bi bi-box-arrow-up-left"></i></button>
             </td>
         </tr>
     </ng-template>
@@ -62,7 +64,7 @@
 </p-dialog>
 
 
-<p-dialog header="Criar Livro" [(visible)]="visibleDialogCriarLivro" [style]="{ width: '50vw', height: '700px' }" [draggable]="false" [closable]="false" [blockScroll]="true">
+<p-dialog header="Criar Livro" [(visible)]="visibleDialogCriarLivro" [style]="{ width: '50vw', height: '800px' }" [draggable]="false" [closable]="false" [blockScroll]="true">
   <div class="container">
     <label for="nome-livro">Nome do Livro</label>
     <input type="text" class="form-control" id="nome-livro" required [(ngModel)]="nomeDoLivro">
@@ -84,9 +86,30 @@
     <p-selectButton [options]="stateOptions" [(ngModel)]="value" optionLabel="label" optionValue="value"></p-selectButton>
   </div>
   <p-footer>
-    <button class="btn btn-danger m-2" (click)="fecharDialogParaCriarLivro()"><i class="bi bi-arrow-left"></i> Voltar</button>
+      <button class="btn btn-danger m-2" (click)="fecharDialogParaCriarLivro()"><i class="bi bi-arrow-left"></i> Voltar</button>
       <button class="btn btn-success m-2" (click)="criaNovoLivro()"><i class="bi bi-check"></i> Confirmar</button>
   </p-footer>
 </p-dialog>
 
 
+<p-dialog header="Emprestar Livro" [(visible)]="visibleDialogEmprestarLivro" [style]="{width: '50vw', height: '400px'}" [draggable]="false" [closable]="false">
+  <b>Informações do Livro</b>
+  <br>
+  <b>Nome</b>: {{livroSelecionadoParaEmprestar.nome}}
+  <p>Selecione a pesssoa que vai pegar o livro emprestado</p>
+  <p-dropdown [options]="pessoas" optionLabel="nome" [(ngModel)]="pessoaSelecionadaParaEmprestarLivro"></p-dropdown>
+  <p-footer>
+    <button class="btn btn-danger m-2" (click)="fecharDialogParaEmprestarLivro()"><i class="bi bi-arrow-left"></i> Voltar</button>
+    <button class="btn btn-success m-2" (click)="emprestaLivro()"><i class="bi bi-check" ></i> Confirmar</button>
+  </p-footer>
+</p-dialog>
+
+<p-dialog header="Devolver Livro" [(visible)]="visibleDialogDevolverLivro" [style]="{width: '50vw', height: '400px'}" [draggable]="false" [closable]="false">
+  <b>Informações do Livro</b>
+  <br>
+  <b>Nome</b>: {{livroSelecionadoParaDevolver.nome}}
+  <p-footer>
+    <button class="btn btn-danger m-2" (click)="fecharDialogParaDevolverLivro()"><i class="bi bi-arrow-left"></i> Voltar</button>
+    <button class="btn btn-success m-2" (click)="devolveLivro()"><i class="bi bi-check"></i> Confirmar</button>
+  </p-footer>
+</p-dialog>

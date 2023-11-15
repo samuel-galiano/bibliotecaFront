@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Autor } from 'src/app/shared/model/Autor';
 import { Editora } from 'src/app/shared/model/Editora';
+import { EmprestaDevolveLivro } from 'src/app/shared/model/EmprestaDevolveLivro.form';
 import { Genero } from 'src/app/shared/model/Genero';
 import { Livro } from 'src/app/shared/model/Livro';
 import { Pessoa } from 'src/app/shared/model/Pessoa';
@@ -24,6 +25,10 @@ export class TabelaLivrosComponent {
   public visibleDialogEditarLivro: boolean = false;
 
   public visibleDialogCriarLivro: boolean = false;
+
+  public visibleDialogEmprestarLivro: boolean = false;
+
+  public visibleDialogDevolverLivro: boolean = false;
 
   public editoras: Editora[] = [];
 
@@ -52,6 +57,15 @@ export class TabelaLivrosComponent {
   public autores: Autor[] = [];
 
   public autorSelecionado: Autor = new Autor();
+
+  public pessoaSelecionadaParaEmprestarLivro: Pessoa = new Pessoa();
+
+  public formularioParaEmprestarLivro: EmprestaDevolveLivro = new EmprestaDevolveLivro();
+
+  public livroSelecionadoParaEmprestar: Livro = new Livro();
+
+  public livroSelecionadoParaDevolver: Livro = new Livro();
+
 
   ngOnInit(){
     this.buscarInformacoesLivros();
@@ -124,4 +138,50 @@ export class TabelaLivrosComponent {
       this.buscarInformacoesLivros();
     })
   }
+
+  public abrirDialogParaEmprestarLivro(livroSelecionado: Livro){
+    this.visibleDialogEmprestarLivro = true;
+    this.livroSelecionadoParaEmprestar = livroSelecionado;
+  }
+
+  public fecharDialogParaEmprestarLivro(){
+    this.visibleDialogEmprestarLivro = false;
+  }
+
+  public abrirDialogParaDevolverLivro(livroSelecionado: Livro){
+    this.visibleDialogDevolverLivro = true;
+    this.livroSelecionadoParaDevolver = livroSelecionado;
+  }
+
+  public fecharDialogParaDevolverLivro(){
+    this.visibleDialogDevolverLivro = false;
+  }
+
+  public emprestaLivro() {
+    if (this.livroSelecionadoParaEmprestar && this.livroSelecionadoParaEmprestar.id !== undefined) {
+        this.formularioParaEmprestarLivro.pessoaEmprestado = this.pessoaSelecionadaParaEmprestarLivro;
+        this.livroService.emprestarLivro(this.livroSelecionadoParaEmprestar.id, this.formularioParaEmprestarLivro).subscribe(() => {
+          console.log("Livro emprestado com sucesso!");
+          this.visibleDialogEmprestarLivro = false;
+          this.buscarInformacoesLivros();
+        });
+    } else {
+        console.error('Livro não selecionado ou ID indefinido.');
+    }
+}
+
+  public devolveLivro(){
+    if(this.livroSelecionadoParaDevolver && this.livroSelecionadoParaDevolver.id !== undefined){
+      this.livroService.devolveLivro(this.livroSelecionadoParaDevolver).subscribe(() => {
+        console.log("Livro devolvido com sucesso!");
+        this.visibleDialogDevolverLivro = false;
+        this.buscarInformacoesLivros();
+      })
+    }else{
+      console.error('Livro não selecionado ou ID indefinido')
+    }
+  }
+
+
+
 }

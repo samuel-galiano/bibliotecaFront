@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Livro } from '../model/Livro';
 import { LivroCount } from '../model/LivroCount';
+import { EmprestaDevolveLivro } from '../model/EmprestaDevolveLivro.form';
 
 @Injectable({
   providedIn: 'root'
@@ -28,4 +29,15 @@ export class LivroService {
   public criarLivro(formulario: Livro): Observable<Livro>{
     return this.http.post<Livro>(`${this.apiUrl}/livros`, formulario, {headers: this.headers})
   }
+
+  public emprestarLivro(livroId: Number, formulario: EmprestaDevolveLivro): Observable<EmprestaDevolveLivro>{
+    return this.http.post<EmprestaDevolveLivro>(`${this.apiUrl}/livros/emprestar-livro/${livroId}`, formulario, {headers: this.headers})
+  }
+
+  public devolveLivro(livroParaDevolver: Livro): Observable<Livro>{
+    const options = { headers: this.headers };  
+    
+    return this.http.post<Livro>(`${this.apiUrl}/livros/devolver-livro/${livroParaDevolver.id}`, null, options);
+}
+
 }
