@@ -17,9 +17,13 @@ export class TabelaEditorasComponent {
 
   public visibleDialogCriarEditora: boolean = false;
 
+  public visibleDialogApagarEditora: boolean = false;
+
   public nomeDaEditora: string = "";
 
   public formularioParaCriarNovaEditora: Editora = new Editora();
+
+  public editoraQueSeraApagada: Editora = new Editora();
 
   ngOnInit(): void {
     this.buscarInformacoesEditoras();
@@ -44,6 +48,15 @@ export class TabelaEditorasComponent {
     this.visibleDialogCriarEditora = false;
   }
 
+  public abrirDialogParaApagarEditora(ediotaSelcionado: Editora){
+    this.visibleDialogApagarEditora = true;
+    this.editoraQueSeraApagada = ediotaSelcionado;
+  }
+
+  public fecharDialogParaApagarEditora(): void{
+    this.visibleDialogApagarEditora = false;
+  }
+
   public criaNovaEditora(): void{
     this.formularioParaCriarNovaEditora.nome = this.nomeDaEditora;
     this.editoraService.criarEditora(this.formularioParaCriarNovaEditora).subscribe(() => {
@@ -52,5 +65,16 @@ export class TabelaEditorasComponent {
       this.buscarInformacoesEditoras();
       this.nomeDaEditora = '';
     })
+  }
+
+  public deletaEditora(): void{
+    if(this.editoraQueSeraApagada && this.editoraQueSeraApagada.id !== undefined){
+      this.editoraService.apagarEditora(this.editoraQueSeraApagada.id).subscribe(() => {
+        this.visibleDialogApagarEditora = false;
+        this.buscarInformacoesEditoras();
+      })
+    } else{
+      console.error("Não funfo :(");
+    }
   }
 }

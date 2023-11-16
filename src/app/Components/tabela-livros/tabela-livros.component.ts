@@ -30,6 +30,8 @@ export class TabelaLivrosComponent {
 
   public visibleDialogDevolverLivro: boolean = false;
 
+  public visibleDialogApagarLivro: boolean = false;
+
   public editoras: Editora[] = [];
 
   public editoraSelecionada: Editora = new Editora();
@@ -66,6 +68,8 @@ export class TabelaLivrosComponent {
 
   public livroSelecionadoParaDevolver: Livro = new Livro();
 
+  public livroSelecionadoParaApagar: Livro = new Livro();
+
 
   ngOnInit(){
     this.buscarInformacoesLivros();
@@ -85,6 +89,15 @@ export class TabelaLivrosComponent {
 
   public fecharDialogParaCriarLivro(){
     this.visibleDialogCriarLivro = false;
+  }
+
+  public abrirDialogParaExcluirLivro(livroSelecionado: Livro){
+    this.visibleDialogApagarLivro = true;
+    this.livroSelecionadoParaApagar = livroSelecionado;
+  }
+
+  public fecharDialogParaExcluirLivro(){
+    this.visibleDialogApagarLivro = false;
   }
 
 
@@ -157,6 +170,15 @@ export class TabelaLivrosComponent {
     this.visibleDialogDevolverLivro = false;
   }
 
+  public abrirDialogParaApagarLivro(livroSelecionado: Livro){
+    this.visibleDialogApagarLivro = true;
+    this.livroSelecionadoParaApagar = livroSelecionado;
+  }
+
+  public fecharDialogParaApagarLivro(){
+    this.visibleDialogApagarLivro = false;
+  }
+
   public emprestaLivro() {
     if (this.livroSelecionadoParaEmprestar && this.livroSelecionadoParaEmprestar.id !== undefined) {
         this.formularioParaEmprestarLivro.pessoaEmprestado = this.pessoaSelecionadaParaEmprestarLivro;
@@ -182,6 +204,15 @@ export class TabelaLivrosComponent {
     }
   }
 
-
-
+  public apagaLivro(){
+    if(this.livroSelecionadoParaApagar && this.livroSelecionadoParaApagar.id !== undefined){
+      this.livroService.apagarLivro(this.livroSelecionadoParaApagar.id).subscribe(() => {
+        console.log('Livro apagado com sucesso!');
+        this.visibleDialogApagarLivro = false;
+        this.buscarInformacoesLivros();
+      })
+    } else{
+      console.error('Livro apagado com sucesso!');
+    }
+  }
 }

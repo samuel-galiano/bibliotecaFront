@@ -22,7 +22,11 @@ export class GeneroService {
     return this.http.get<Genero[]>(`${this.apiUrl}/generos`, {headers: this.headers})
   }
 
-  public criarGenero(formulario: Genero): Observable<Editora>{
+  public criarGenero(formulario: Genero): Observable<Genero>{
     return this.http.post<Genero>(`${this.apiUrl}/generos`, formulario, {headers: this.headers})
+  }
+
+  public apagarGenero(generoId: Number): Observable<Genero>{
+    return this.http.delete<Genero>(`${this.apiUrl}/generos/${generoId}`, {headers: this.headers})
   }
 }

@@ -25,4 +25,8 @@ export class EditoraService {
   public criarEditora(formulario: Editora): Observable<Editora>{
     return this.http.post<Editora>(`${this.apiUrl}/editoras`, formulario, {headers: this.headers})
   }
+
+  public apagarEditora(editoraId: Number): Observable<Editora>{
+    return this.http.delete<Editora>(`${this.apiUrl}/editoras/${editoraId}`, {headers: this.headers})
+  }
 }

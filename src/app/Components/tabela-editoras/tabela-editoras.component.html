@@ -22,7 +22,7 @@
             <td>{{ editora.nome }}</td>
             <td>
               <button class="btn btn-warning text-white m-2" data-toggle="tooltip" data-placement="bottom" title="Editar" (click)="abrirDialogParaEditarEditora()"><i class="bi bi-pencil-square"></i></button>
-              <button class="btn btn-danger m-2" data-toggle="tooltip" data-placement="bottom" title="Apagar"><i class="bi bi-trash-fill"></i></button>
+              <button class="btn btn-danger m-2" data-toggle="tooltip" data-placement="bottom" title="Apagar" (click)="abrirDialogParaApagarEditora(editora)"><i class="bi bi-trash-fill"></i></button>
             </td>
         </tr>
     </ng-template>
@@ -57,6 +57,15 @@
   <p-footer>
     <button class="btn btn-danger m-2" (click)="fecharDialogParaCriarEditora()"><i class="bi bi-arrow-left"></i> Voltar</button>
     <button class="btn btn-success m-2" (click)="criaNovaEditora()" [disabled]="!nomeEditoraInput.valid"><i class="bi bi-check"></i> Confirmar</button>
+  </p-footer>
+</p-dialog>
+
+<p-dialog header="Excluir Editora" [(visible)]="visibleDialogApagarEditora" [style]="{width: '50vw'}" [draggable]="false" [closable]="false">
+  <p>Está Ação é <b>irreversível</b> tem certeza que deseja excluir a editora <b>{{editoraQueSeraApagada.nome}}</b> ?</p>
+
+  <p-footer>
+    <button class="btn btn-danger m-2" (click)="fecharDialogParaApagarEditora()"><i class="bi bi-arrow-left"></i> Voltar</button>
+    <button class="btn btn-success" (click)="deletaEditora()"><i class="bi bi-check"></i> Confirmar</button>
   </p-footer>
 </p-dialog>
 

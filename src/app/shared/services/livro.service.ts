@@ -40,4 +40,8 @@ export class LivroService {
     return this.http.post<Livro>(`${this.apiUrl}/livros/devolver-livro/${livroParaDevolver.id}`, null, options);
 }
 
+  public apagarLivro(livroId: Number): Observable<Livro>{
+    return this.http.delete<Livro>(`${this.apiUrl}/livros/${livroId}`, {headers: this.headers})
+  }
+
 }

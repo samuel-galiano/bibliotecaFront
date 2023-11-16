@@ -17,9 +17,13 @@ export class TabelaGenerosComponent {
 
   public visibleDialogCriarGenero: boolean = false;
 
+  public visibleDialogApagarGenero: boolean = false;
+
   public nomeDoGenero: string = "";
 
   public formularioParaCriarNovoGenero: Genero = new Genero();
+
+  public generoQueSeraApagado: Genero = new Genero();
 
   ngOnInit(){
     this.buscarInformacoesGeneros();
@@ -44,6 +48,15 @@ export class TabelaGenerosComponent {
     this.visibleDialogCriarGenero = false;
   }
 
+  public abrirDialogParaApagarGenero(generoSelecionado: Genero){
+    this.visibleDialogApagarGenero = true;
+    this.generoQueSeraApagado = generoSelecionado;
+  }
+
+  public fecharDialogParaApagarGenero(){
+    this.visibleDialogApagarGenero = false;
+  }
+
   public criarNovoGenero(): void{
     this.formularioParaCriarNovoGenero.nome = this.nomeDoGenero;
     this.generoService.criarGenero(this.formularioParaCriarNovoGenero).subscribe(() => {
@@ -54,4 +67,14 @@ export class TabelaGenerosComponent {
     })
   }
 
+  public deletaGenero(): void{
+    if(this.generoQueSeraApagado && this.generoQueSeraApagado.id !== undefined){
+        this.generoService.apagarGenero(this.generoQueSeraApagado.id).subscribe(() => {
+        this.visibleDialogApagarGenero = false;
+        this.buscarInformacoesGeneros();
+      })
+    } else {
+      console.error("Não fundo :(");
+    }
+  }
 }

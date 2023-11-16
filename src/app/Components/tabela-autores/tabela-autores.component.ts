@@ -17,9 +17,13 @@ export class TabelaAutoresComponent {
 
   public visibleDialogCriarAutor: boolean = false;
 
+  public visibleDialogApagarAutor: boolean = false; 
+
   public nomeDoAutor: string = '';
 
   public formularioParaCriarNovoAutor: Autor =new Autor();
+
+  public autorQueSeraApagado: Autor = new Autor();
 
   ngOnInit(): void {
     this.buscarInformacoesClientes();
@@ -39,6 +43,15 @@ export class TabelaAutoresComponent {
     this.nomeDoAutor = '';
   }
 
+  public abrirDialogParaApagarAutor(autorSelecionado: Autor){
+    this.visibleDialogApagarAutor = true;
+    this.autorQueSeraApagado = autorSelecionado;
+  }
+
+  public fecharDialogParaApagarAutor(){
+    this.visibleDialogApagarAutor = false;
+  }
+
   public buscarInformacoesClientes(): void {
     this.autorService.listarAutores().subscribe((dados: Autor[]) => {
       this.autores = dados;
@@ -54,5 +67,16 @@ export class TabelaAutoresComponent {
       this.buscarInformacoesClientes();
       this.nomeDoAutor = '';
     })
+  }
+
+  public deletaAutor(){
+    if(this.autorQueSeraApagado && this.autorQueSeraApagado.id !== undefined){
+      this.autorService.apagarAutor(this.autorQueSeraApagado.id).subscribe(() => {
+        this.visibleDialogApagarAutor = false;
+        this.buscarInformacoesClientes();
+      })
+    } else{
+      console.log("Autor não selecionado ou id indefinido!");
+    }
   }
 }
