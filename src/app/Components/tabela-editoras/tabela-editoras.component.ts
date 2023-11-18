@@ -19,11 +19,17 @@ export class TabelaEditorasComponent {
 
   public visibleDialogApagarEditora: boolean = false;
 
+  public visibleDialogParaEditarEditora: boolean = false;
+
   public nomeDaEditora: string = "";
 
   public formularioParaCriarNovaEditora: Editora = new Editora();
 
   public editoraQueSeraApagada: Editora = new Editora();
+
+  public editoraQueSeraEditada: Editora = new Editora();
+
+  public nomeDaEditoraQueSeraEditada: string = '';
 
   ngOnInit(): void {
     this.buscarInformacoesEditoras();
@@ -36,8 +42,9 @@ export class TabelaEditorasComponent {
     })
   }
 
-  public abrirDialogParaEditarEditora(): void{
+  public abrirDialogParaEditarEditora(editoraSelecionada: Editora): void{
     this.visibleDialogEditarEditora = true;
+    this.editoraQueSeraEditada = editoraSelecionada;
   }
 
   public abrirDialogParaCriarEditora(): void{
@@ -55,6 +62,10 @@ export class TabelaEditorasComponent {
 
   public fecharDialogParaApagarEditora(): void{
     this.visibleDialogApagarEditora = false;
+  }
+
+  public fecharDialogParaEditarEditora(): void{
+    this.visibleDialogEditarEditora = false;
   }
 
   public criaNovaEditora(): void{
@@ -75,6 +86,19 @@ export class TabelaEditorasComponent {
       })
     } else{
       console.error("Não funfo :(");
+    }
+  }
+
+  public editaEditora(){
+    this.editoraQueSeraEditada.nome = this.nomeDaEditoraQueSeraEditada;
+
+    if(this.editoraQueSeraEditada && this.editoraQueSeraEditada.id !== undefined){
+      this.editoraService.editarEditora(this.editoraQueSeraEditada.id, this.editoraQueSeraEditada).subscribe(() => {
+        this.visibleDialogEditarEditora = false;
+        this.buscarInformacoesEditoras();
+      })
+    }else{
+      console.error("Editora não selecionada ou id indefinido");
     }
   }
 }

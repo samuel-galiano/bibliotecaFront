@@ -29,4 +29,8 @@ export class GeneroService {
   public apagarGenero(generoId: Number): Observable<Genero>{
     return this.http.delete<Genero>(`${this.apiUrl}/generos/${generoId}`, {headers: this.headers})
   }
+
+  public editarGenero(generoId: Number, formulario: Genero): Observable<Genero>{
+    return this.http.put<Genero>(`${this.apiUrl}/generos/${generoId}`, formulario, {headers: this.headers})
+  }
 }

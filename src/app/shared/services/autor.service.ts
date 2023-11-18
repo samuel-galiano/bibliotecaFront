@@ -28,4 +28,8 @@ export class AutorService {
   public apagarAutor(autorId: Number): Observable<Autor>{
     return this.http.delete<Autor>(`${this.apiUrl}/autores/${autorId}`, { headers: this.headers})
   }
+
+  public editarAutor(autorId: Number, formulario: Autor): Observable<Autor>{
+    return this.http.put<Autor>(`${this.apiUrl}/autores/${autorId}`, formulario, { headers: this.headers})
+  }
 }

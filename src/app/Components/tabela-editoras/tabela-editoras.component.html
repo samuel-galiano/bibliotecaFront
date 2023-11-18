@@ -21,7 +21,7 @@
             <td>{{ editora.id }}</td>
             <td>{{ editora.nome }}</td>
             <td>
-              <button class="btn btn-warning text-white m-2" data-toggle="tooltip" data-placement="bottom" title="Editar" (click)="abrirDialogParaEditarEditora()"><i class="bi bi-pencil-square"></i></button>
+              <button class="btn btn-warning text-white m-2" data-toggle="tooltip" data-placement="bottom" title="Editar" (click)="abrirDialogParaEditarEditora(editora)"><i class="bi bi-pencil-square"></i></button>
               <button class="btn btn-danger m-2" data-toggle="tooltip" data-placement="bottom" title="Apagar" (click)="abrirDialogParaApagarEditora(editora)"><i class="bi bi-trash-fill"></i></button>
             </td>
         </tr>
@@ -36,13 +36,16 @@
 
 
   <p-dialog header="Editar Editora" [(visible)]="visibleDialogEditarEditora" [style]="{width: '50vw'}" [draggable]="false">
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </p>
+    <div class="container">
+      <label for="nome-autor">Nome da Editora</label>
+      <input type="text" class="form-control" id="nome-autor" required [(ngModel)]="nomeDaEditoraQueSeraEditada" #nomeEditoraInput="ngModel" value="{{editoraQueSeraEditada.nome}}">
+      <div *ngIf="nomeEditoraInput.invalid && (nomeEditoraInput.dirty || nomeEditoraInput.touched)" class="text-danger">
+        Nome da Editora é obrigatório.
+      </div>
+    </div>
     <p-footer>
-      <button class="btn btn-danger m-2"><i class="bi bi-arrow-left"></i> Voltar</button>
-      <button class="btn btn-success m-2"><i class="bi bi-check"></i> Confirmar</button>
+      <button class="btn btn-danger m-2" (click)="fecharDialogParaEditarEditora()"><i class="bi bi-arrow-left"></i> Voltar</button>
+      <button class="btn btn-success m-2" (click)="editaEditora()"><i class="bi bi-check"></i> Confirmar</button>
     </p-footer>
 </p-dialog>
 

@@ -25,13 +25,23 @@ export class TabelaAutoresComponent {
 
   public autorQueSeraApagado: Autor = new Autor();
 
+  public autorQueSeraEditado: Autor = new Autor();
+
+  public nomeDoAutorQueSeraEditado: string = '';
+
+
   ngOnInit(): void {
     this.buscarInformacoesClientes();
     
   }
 
-  public abrirDialogParaEditarAutor(){
+  public abrirDialogParaEditarAutor(autorSelecionado: Autor){
     this.visibleDialogEditarAutor = true;
+    this.autorQueSeraEditado = autorSelecionado;
+  }
+
+  public fecharDialogParaEditarAutor(){
+    this.visibleDialogEditarAutor = false;
   }
 
   public abrirDialogParaCriarAutor(){
@@ -77,6 +87,19 @@ export class TabelaAutoresComponent {
       })
     } else{
       console.log("Autor não selecionado ou id indefinido!");
+    }
+  }
+
+  public editaAutor(){
+    this.autorQueSeraEditado.nome = this.nomeDoAutorQueSeraEditado;
+
+    if(this.autorQueSeraEditado && this.autorQueSeraEditado.id !== undefined){
+      this.autorService.editarAutor(this.autorQueSeraEditado.id, this.autorQueSeraEditado).subscribe(() => {
+        this.visibleDialogEditarAutor = false;
+        this.buscarInformacoesClientes();
+      })
+    }else{
+      console.error("Autor não selecionado ou id indefinido");
     }
   }
 }

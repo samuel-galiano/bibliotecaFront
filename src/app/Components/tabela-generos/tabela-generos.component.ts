@@ -25,12 +25,21 @@ export class TabelaGenerosComponent {
 
   public generoQueSeraApagado: Genero = new Genero();
 
+  public generoQueSeraEditado: Genero = new Genero();
+
+  public nomeDoGeneroQueSeraEditado: string = "";
+
   ngOnInit(){
     this.buscarInformacoesGeneros();
   }
 
-  public abrirDialogParaEditarGenero(){
+  public abrirDialogParaEditarGenero(generoSelecionado: Genero){
     this.visibleDialogEditarGenero = true;
+    this.generoQueSeraEditado = generoSelecionado;
+  }
+
+  public fecharDialogParaEditarGenero(){
+    this.visibleDialogEditarGenero = false;
   }
 
   public buscarInformacoesGeneros(){
@@ -57,6 +66,8 @@ export class TabelaGenerosComponent {
     this.visibleDialogApagarGenero = false;
   }
 
+  
+
   public criarNovoGenero(): void{
     this.formularioParaCriarNovoGenero.nome = this.nomeDoGenero;
     this.generoService.criarGenero(this.formularioParaCriarNovoGenero).subscribe(() => {
@@ -75,6 +86,19 @@ export class TabelaGenerosComponent {
       })
     } else {
       console.error("Não fundo :(");
+    }
+  }
+
+  public editaGenero(){
+    this.generoQueSeraEditado.nome = this.nomeDoGeneroQueSeraEditado;
+
+    if(this.generoQueSeraEditado && this.generoQueSeraEditado.id !== undefined){
+      this.generoService.editarGenero(this.generoQueSeraEditado.id, this.generoQueSeraEditado).subscribe(() => {
+        this.visibleDialogEditarGenero = false; 
+        this.buscarInformacoesGeneros();
+      })
+    }else{
+      console.error("Editora não selecionada ou id indefinido");
     }
   }
 }
