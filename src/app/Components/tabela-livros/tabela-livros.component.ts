@@ -212,7 +212,7 @@ export class TabelaLivrosComponent {
         this.buscarInformacoesLivros();
       })
     } else{
-      console.error('Livro apagado com sucesso!');
+      console.error('Livro apagado com fracasso!');
     }
   }
 }

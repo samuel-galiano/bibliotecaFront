@@ -23,4 +23,8 @@ export class PessoaService {
   public criarPessoa(formulario: Pessoa): Observable<Pessoa>{
     return this.http.post<Pessoa>(`${this.apiUrl}/pessoas`, formulario, {headers: this.headers})
   }
+
+  public apagarPessoa(pessoaId: Number): Observable<Pessoa>{
+    return this.http.delete<Pessoa>(`${this.apiUrl}/pessoas/${pessoaId}`, {headers: this.headers})	
+  }
 }

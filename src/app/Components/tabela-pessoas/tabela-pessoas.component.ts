@@ -17,11 +17,16 @@ export class TabelaPessoasComponent {
 
   public visibleDialogCriarPessoa: boolean = false;
 
+  public visibleDialogApagarPessoa: boolean = false;
+
   public nomeDaPessoa: string = "";
 
   public enderecoDaPessoa: string = "";
 
   public formularioParaCriarNovaPessoa: Pessoa = new Pessoa();
+
+  public pessoaSelecionadaParaApagar: Pessoa = new Pessoa();
+
 
   ngOnInit(){
     this.buscarInformacoesPessoas();
@@ -46,6 +51,15 @@ export class TabelaPessoasComponent {
     this.visibleDialogCriarPessoa = false;
   }
 
+  public abrirDialogParaApagarPessoa(pessoaSelecionada: Pessoa){
+    this.visibleDialogApagarPessoa = true;
+    this.pessoaSelecionadaParaApagar = pessoaSelecionada;
+  }
+
+  public fecharDialogParaApagarPessoa(){
+    this.visibleDialogApagarPessoa = false;
+  }
+
   public criaNovaPessoa(): void{
     this.formularioParaCriarNovaPessoa.nome = this.nomeDaPessoa;
     this.formularioParaCriarNovaPessoa.endereco = this.enderecoDaPessoa;
@@ -57,5 +71,17 @@ export class TabelaPessoasComponent {
       this.nomeDaPessoa = '';
       this.enderecoDaPessoa = '';
     })
+  }
+
+  public apagaPessoa(): void{
+    if(this.pessoaSelecionadaParaApagar && this.pessoaSelecionadaParaApagar.id !== undefined){
+      this.pessoaService.apagarPessoa(this.pessoaSelecionadaParaApagar.id).subscribe(() => {
+        console.log('Pessoa  apagada com sucesso!');
+        this.visibleDialogApagarPessoa = false;
+        this.buscarInformacoesPessoas();
+      })
+    } else{
+      console.error('Pessoa apagada com fracasso!');
+    }
   }
 }

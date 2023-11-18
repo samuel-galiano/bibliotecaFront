@@ -24,7 +24,7 @@
             <td>{{pessoa.endereco}}</td>
             <td>
               <button class="btn btn-warning text-white m-2" data-toggle="tooltip" data-placement="bottom" title="Editar" (click)="abrirDialogParaEditarPessoa()"><i class="bi bi-pencil-square"></i></button>
-              <button class="btn btn-danger m-2" data-toggle="tooltip" data-placement="bottom" title="Apagar"><i class="bi bi-trash-fill"></i></button>
+              <button class="btn btn-danger m-2" data-toggle="tooltip" data-placement="bottom" title="Apagar" (click)="abrirDialogParaApagarPessoa(pessoa)"><i class="bi bi-trash-fill"></i></button>
             </td>
         </tr>
     </ng-template>
@@ -66,4 +66,13 @@
       <button class="btn btn-success m-2" (click)="criaNovaPessoa()" [disabled]="!nomePessoaInput.valid && !enderecoPessoaInput.valid"><i class="bi bi-check"></i> Confirmar</button>
     </p-footer>
   </div>
+</p-dialog>
+
+<p-dialog header="Apagar Pessoa" [(visible)]="visibleDialogApagarPessoa" [style]="{width: '50vw'}" [draggable]="false" [closable]="false">
+  <p>Está Ação é <b>irreversível</b> tem certeza que deseja excluir a pessoa <b>{{pessoaSelecionadaParaApagar.nome}}</b> ?</p>
+
+  <p-footer>
+    <button class="btn btn-danger m-2" (click)="fecharDialogParaApagarPessoa()"><i class="bi bi-arrow-left"></i> Voltar</button>
+    <button class="btn btn-success m-2" (click)="apagaPessoa()"><i class="bi bi-check"></i> Confirmar</button>
+  </p-footer>
 </p-dialog>

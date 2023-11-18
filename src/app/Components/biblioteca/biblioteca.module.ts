@@ -4,7 +4,8 @@ import { LoginInitialComponent } from './LoginComponent/login-initial.component'
 import { BodyLoginComponent } from './BodyLogin/body-login.component';
 import { FormsModule } from '@angular/forms';
 import { MenuInicialComponent } from './menu-inicial/menu-inicial.component';
-
+import { ToastModule } from 'primeng/toast';
+import { PanelMenuModule } from 'primeng/panelmenu';
 
 @NgModule({
   declarations: [
@@ -14,8 +15,9 @@ import { MenuInicialComponent } from './menu-inicial/menu-inicial.component';
   ],
   imports: [
     CommonModule,
-    FormsModule
-    
+    FormsModule,
+    ToastModule,
+    PanelMenuModule
   ],
   exports: [
     LoginInitialComponent,
