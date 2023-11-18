@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../model/User';
 import { Observable } from 'rxjs';
+import { CriaUsuarioForm } from '../model/CriarUsuario.form';
 
 
 @Injectable({
@@ -16,5 +17,9 @@ export class AuthenticationService {
   public login(formulario: User): Observable<User>{
     
     return this.http.post<User>(`${this.apiUrl}/auth/login`, formulario);
+  }
+
+  public registar(formulario: CriaUsuarioForm): Observable<CriaUsuarioForm>{
+    return this.http.post<CriaUsuarioForm>(`${this.apiUrl}/auth/register`, formulario);
   }
 }

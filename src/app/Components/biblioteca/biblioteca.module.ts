@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { MenuInicialComponent } from './menu-inicial/menu-inicial.component';
 import { ToastModule } from 'primeng/toast';
 import { PanelMenuModule } from 'primeng/panelmenu';
+import { DialogModule } from 'primeng/dialog';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { PanelMenuModule } from 'primeng/panelmenu';
     CommonModule,
     FormsModule,
     ToastModule,
-    PanelMenuModule
+    PanelMenuModule,
+    DialogModule
   ],
   exports: [
     LoginInitialComponent,
