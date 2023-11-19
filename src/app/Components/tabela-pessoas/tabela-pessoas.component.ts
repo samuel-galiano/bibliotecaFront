@@ -27,6 +27,12 @@ export class TabelaPessoasComponent {
 
   public pessoaSelecionadaParaApagar: Pessoa = new Pessoa();
 
+  public pessoaSelecionadaParaEditar: Pessoa = new Pessoa();
+
+  public nomeDaPessoaQueSeraEditada: string = "";
+
+  public enderecoDaPessoaQueSeraEditada: string = "";
+
 
   ngOnInit(){
     this.buscarInformacoesPessoas();
@@ -39,8 +45,13 @@ export class TabelaPessoasComponent {
     })
   }
 
-  public abrirDialogParaEditarPessoa(){
+  public abrirDialogParaEditarPessoa(pessoaSelecionada: Pessoa): void {
     this.visibleDialogEditarPessoa = true;
+    this.pessoaSelecionadaParaEditar = pessoaSelecionada;
+  }
+
+  public fecharDialogParaEditarPessoa(){
+    this.visibleDialogEditarPessoa = false;
   }
 
   public abrirDialogParaCriarPessoa(){
@@ -82,6 +93,20 @@ export class TabelaPessoasComponent {
       })
     } else{
       console.error('Pessoa apagada com fracasso!');
+    }
+  }
+
+  public editaPessoa(): void{
+    this.pessoaSelecionadaParaEditar.nome = this.nomeDaPessoaQueSeraEditada;
+    this.pessoaSelecionadaParaEditar.endereco = this.enderecoDaPessoaQueSeraEditada;
+
+    if(this.pessoaSelecionadaParaEditar && this.pessoaSelecionadaParaEditar.id !== undefined){
+      this.pessoaService.editarPessoa(this.pessoaSelecionadaParaEditar.id, this.pessoaSelecionadaParaEditar).subscribe(() => {
+        this.visibleDialogEditarPessoa = false;
+        this.buscarInformacoesPessoas();
+      })
+    }else{
+      console.error("Pessoa não selecionada ou id indefinido");
     }
   }
 }

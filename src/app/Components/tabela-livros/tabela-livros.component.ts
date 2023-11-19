@@ -70,6 +70,23 @@ export class TabelaLivrosComponent {
 
   public livroSelecionadoParaApagar: Livro = new Livro();
 
+  public livroSelecionadoParaEditar: Livro = new Livro();
+
+  public nomeDoLivroSelecionadoParaEditar: string = "";
+
+  public nomeDaEditoraDoLivroSelecionadoParaEditar: Editora = new Editora();
+
+  public generoDoLivroSelecionadoParaEditar: Genero = new Genero(); 
+
+  public autorDoLivroSelecionadoParaEditar: Autor = new Autor();
+
+  public pessoaDoLivroSelecionadoParaEditar: Pessoa  = new Pessoa();
+
+  public quantidadeEmprestadaDoLivroSelecionadoParaEditar: Number | undefined;
+
+  public dataDoUltimoEmprestimoDoLivroSelecionadoParaEditar: string = "";
+
+  public valueDoLivroSelecionadoParaEditar: string = 'false';
 
   ngOnInit(){
     this.buscarInformacoesLivros();
@@ -79,8 +96,13 @@ export class TabelaLivrosComponent {
     this.buscarAutor();
   }
 
-  public abrirDialogParaEditarLivro(){
+  public abrirDialogParaEditarLivro(livroSelecionado: Livro){
     this.visibleDialogEditarLivro = true;
+    this.livroSelecionadoParaEditar = livroSelecionado;
+  }
+
+  public fecharDialogParaEditarLivro(){
+    this.visibleDialogEditarLivro = false;
   }
 
   public abrirDialogParaCriarLivro(){
@@ -152,6 +174,32 @@ export class TabelaLivrosComponent {
     })
   }
 
+  public editaLivro() {
+    if (this.livroSelecionadoParaEditar) {
+      this.livroSelecionadoParaEditar.nome = this.nomeDoLivroSelecionadoParaEditar !== "" ? this.nomeDoLivroSelecionadoParaEditar : this.livroSelecionadoParaEditar.nome;
+      this.livroSelecionadoParaEditar.editora = this.nomeDaEditoraDoLivroSelecionadoParaEditar.nome !== "" ? this.nomeDaEditoraDoLivroSelecionadoParaEditar : this.livroSelecionadoParaEditar.editora;
+      this.livroSelecionadoParaEditar.genero = this.generoDoLivroSelecionadoParaEditar.nome !== "" ? this.generoDoLivroSelecionadoParaEditar : this.livroSelecionadoParaEditar.genero;
+      this.livroSelecionadoParaEditar.autor = this.autorDoLivroSelecionadoParaEditar.nome !== "" ? this.autorDoLivroSelecionadoParaEditar : this.livroSelecionadoParaEditar.autor;
+      this.livroSelecionadoParaEditar.pessoaEmprestado = this.pessoaDoLivroSelecionadoParaEditar.nome !== "" ? this.pessoaDoLivroSelecionadoParaEditar : this.livroSelecionadoParaEditar.pessoaEmprestado;
+      this.livroSelecionadoParaEmprestar.quantidadeEmprestada = this.quantidadeEmprestadaDoLivroSelecionadoParaEditar;
+      this.livroSelecionadoParaEditar.dataDoUltimoEmprestimo = this.dataDoUltimoEmprestimoDoLivroSelecionadoParaEditar !== "" ? this.dataDoUltimoEmprestimoDoLivroSelecionadoParaEditar : this.livroSelecionadoParaEditar.dataDoUltimoEmprestimo;
+      this.livroSelecionadoParaEditar.disponivel = this.valueDoLivroSelecionadoParaEditar;
+  
+      if (this.livroSelecionadoParaEditar.id !== undefined) {
+        this.livroService.editarLivro(this.livroSelecionadoParaEditar.id, this.livroSelecionadoParaEditar).subscribe(() => {
+          this.visibleDialogEditarLivro = false;
+          this.buscarInformacoesLivros();
+        })
+      } else {
+        console.error("Livro não selecionado ou id indefinido");
+      }
+    } else {
+      console.error("Livro não selecionado");
+    }
+  }
+  
+  
+
   public abrirDialogParaEmprestarLivro(livroSelecionado: Livro){
     this.visibleDialogEmprestarLivro = true;
     this.livroSelecionadoParaEmprestar = livroSelecionado;
@@ -215,4 +263,6 @@ export class TabelaLivrosComponent {
       console.error('Livro apagado com fracasso!');
     }
   }
+
+  
 }

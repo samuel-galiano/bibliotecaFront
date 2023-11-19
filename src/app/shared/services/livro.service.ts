@@ -44,4 +44,7 @@ export class LivroService {
     return this.http.delete<Livro>(`${this.apiUrl}/livros/${livroId}`, {headers: this.headers})
   }
 
+  public editarLivro(livroId: Number, formulario: Livro): Observable<Livro>{
+    return this.http.put<Livro>(`${this.apiUrl}/livros/${livroId}`, formulario, {headers: this.headers})
+  }
 }

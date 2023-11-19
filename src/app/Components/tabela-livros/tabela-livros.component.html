@@ -37,7 +37,7 @@
             <td *ngIf="livro.pessoaEmprestado">{{livro.pessoaEmprestado.nome}}</td>
             <td *ngIf="!livro.pessoaEmprestado">Este livro não está emprestado</td>
             <td>
-              <button class="btn btn-warning text-white m-2" data-toggle="tooltip" data-placement="bottom" title="Editar" (click)="abrirDialogParaEditarLivro()"><i class="bi bi-pencil-square"></i></button>
+              <button class="btn btn-warning text-white m-2" data-toggle="tooltip" data-placement="bottom" title="Editar" (click)="abrirDialogParaEditarLivro(livro)"><i class="bi bi-pencil-square"></i></button>
               <button class="btn btn-danger m-2" data-toggle="tooltip" data-placement="bottom" title="Apagar" (click)="abrirDialogParaApagarLivro(livro)"><i class="bi bi-trash-fill"></i></button>
               <button class="btn btn-success m-2" data-toggle="tooltip" data-placement="bottom" title="Emprestar Livro" (click)="abrirDialogParaEmprestarLivro(livro)" [disabled]="!livro.disponivel"><i class="bi bi-box-arrow-up-right"></i></button>
               <button class="btn btn-primary m-2" data-toggle="tooltip" data-placement="bottom" title="Devolver Livro" (click)="abrirDialogParaDevolverLivro(livro)" [disabled]="livro.disponivel"><i class="bi bi-box-arrow-up-left"></i></button>
@@ -53,13 +53,29 @@
 
 
   <p-dialog header="Editar Livro" [(visible)]="visibleDialogEditarLivro" [style]="{width: '50vw'}" [draggable]="false" [closable]="false">
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </p>
+    <div class="container">
+      <label for="nome-livro">Nome do Livro</label>
+      <input type="text" class="form-control" id="nome-livro" required [(ngModel)]="nomeDoLivroSelecionadoParaEditar" value="{{livroSelecionadoParaEditar.nome}}">
+      <p>Nome Da Editora</p>
+      <p-dropdown [options]="editoras" optionLabel="nome" [(ngModel)]="nomeDaEditoraDoLivroSelecionadoParaEditar"  placeholder="Selecione uma editora"></p-dropdown>
+      <p>Nome do Genero</p>
+      <p-dropdown [options]="generos" optionLabel="nome" [(ngModel)]="generoDoLivroSelecionadoParaEditar" placeholder="Selecione um genero"></p-dropdown>
+      <p>Nome do Autor</p>
+      <p-dropdown [options]="autores" optionLabel="nome" [(ngModel)]="autorDoLivroSelecionadoParaEditar" placeholder="Selecione um autor"></p-dropdown>
+      <p>Pessoa Emprestado</p>
+      <p-dropdown [options]="pessoas" optionLabel="nome" [(ngModel)]="pessoaDoLivroSelecionadoParaEditar"></p-dropdown>
+      <br>
+      <label for="quantidade-emprestada">Quantidade Emprestada</label>
+      <input type="number" class="form-control" id="quantidade-emprestada" [(ngModel)]="quantidadeEmprestadaDoLivroSelecionadoParaEditar" value="{{livroSelecionadoParaEditar.quantidadeEmprestada}}">
+      <label for="data-emprestado">Data do Último Empréstimo</label>
+      <input type="date" class="form-control" id="data-emprestado" required [(ngModel)]="dataDoUltimoEmprestimoDoLivroSelecionadoParaEditar" value="{{livroSelecionadoParaEditar.dataDoUltimoEmprestimo}}">
+      <br>
+      <p>Está Disponível?</p>
+      <p-selectButton [options]="stateOptions" [(ngModel)]="valueDoLivroSelecionadoParaEditar" optionLabel="label" optionValue="value"></p-selectButton>
+    </div>
     <p-footer>
-      <button class="btn btn-danger m-2"><i class="bi bi-arrow-left"></i> Voltar</button>
-      <button class="btn btn-success m-2"><i class="bi bi-check"></i> Confirmar</button>
+      <button class="btn btn-danger m-2" (click)="fecharDialogParaEditarLivro()"><i class="bi bi-arrow-left"></i> Voltar</button>
+      <button class="btn btn-success m-2" (click)="editaLivro()"><i class="bi bi-check"></i> Confirmar</button>
     </p-footer>
 </p-dialog>
 
