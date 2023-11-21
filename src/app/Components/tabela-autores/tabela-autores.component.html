@@ -28,7 +28,7 @@
   </ng-template>
   <ng-template pTemplate="summary">
     <div class="flex align-items-center justify-content-between">
-        Total de Autores: {{autores ? autores.length : 0 }} 
+        Total de Autores: {{autores ? autores.length : 0 }}
     </div>
 </ng-template>
 </p-table>
@@ -58,7 +58,7 @@
   </div>
   <p-footer>
     <button class="btn btn-danger m-2" (click)="fechaDialogParaCriarAutor()"><i class="bi bi-arrow-left"></i> Voltar</button>
-    <button class="btn btn-success m-2" (click)="criaNovoAutor()" [disabled]="!nomeAutorInput.valid"><i class="bi bi-check"></i> Confirmar</button>
+    <button class="btn btn-success m-2" (click)="criaNovoAutor()" [disabled]="!nomeDoAutor"><i class="bi bi-check"></i> Confirmar</button>
   </p-footer>
 </p-dialog>
 

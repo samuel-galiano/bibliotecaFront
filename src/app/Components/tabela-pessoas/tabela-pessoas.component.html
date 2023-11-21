@@ -71,7 +71,7 @@
     </div>
     <p-footer>
       <button class="btn btn-danger m-2" (click)="fecharDialogParaCriarPessoa()"><i class="bi bi-arrow-left"></i> Voltar</button>
-      <button class="btn btn-success m-2" (click)="criaNovaPessoa()" [disabled]="!nomePessoaInput.valid && !enderecoPessoaInput.valid"><i class="bi bi-check"></i> Confirmar</button>
+      <button class="btn btn-success m-2" (click)="criaNovaPessoa()" [disabled]="!nomeDaPessoa || !enderecoDaPessoa"><i class="bi bi-check"></i> Confirmar</button>
     </p-footer>
   </div>
 </p-dialog>
