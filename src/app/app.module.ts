@@ -9,7 +9,6 @@ import { InputTextModule } from 'primeng/inputtext';
 import { AuthenticationService } from './shared/authentication/authentication.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { BibliotecaModule } from './Components/biblioteca/biblioteca.module';
 import { TabelaAutoresComponent } from './Components/tabela-autores/tabela-autores.component';
 import { TabelaEditorasComponent } from './Components/tabela-editoras/tabela-editoras.component';
 import { TabelaGenerosComponent } from './Components/tabela-generos/tabela-generos.component';
@@ -23,6 +22,12 @@ import { LivrosPorAutorEGeneroComponent } from './Components/livros-por-autor-e-
 import { TabelaTransacaoComponent } from './Components/tabela-transacao/tabela-transacao.component';
 import { TabelaVendasComponent } from './Components/tabela-vendas/tabela-vendas.component';
 import { TabelaVendasPorMesComponent } from './Components/tabela-vendas-por-mes/tabela-vendas-por-mes.component';
+import { LoginInitialComponent } from './Components/biblioteca/LoginComponent/login-initial.component';
+import { BodyLoginComponent } from './Components/biblioteca/BodyLogin/body-login.component';
+import { MenuInicialComponent } from './Components/biblioteca/menu-inicial/menu-inicial.component';
+import { ToastModule } from 'primeng/toast';
+import { PanelMenuModule } from 'primeng/panelmenu';
+import { MegaMenuModule } from 'primeng/megamenu';
 
 @NgModule({
   declarations: [
@@ -35,7 +40,10 @@ import { TabelaVendasPorMesComponent } from './Components/tabela-vendas-por-mes/
     LivrosPorAutorEGeneroComponent,
     TabelaTransacaoComponent,
     TabelaVendasComponent,
-    TabelaVendasPorMesComponent
+    TabelaVendasPorMesComponent,
+    LoginInitialComponent,
+    BodyLoginComponent,
+    MenuInicialComponent
   ],
   imports: [
     BrowserModule,
@@ -43,12 +51,16 @@ import { TabelaVendasPorMesComponent } from './Components/tabela-vendas-por-mes/
     InputTextModule,
     HttpClientModule,
     FormsModule,
-    BibliotecaModule,
     DialogModule,
     BrowserAnimationsModule,
     TableModule,
     DropdownModule,
-    SelectButtonModule
+    SelectButtonModule,
+    FormsModule,
+    ToastModule,
+    PanelMenuModule,
+    DialogModule,
+    MegaMenuModule
   ],
   providers: [
     AuthenticationService

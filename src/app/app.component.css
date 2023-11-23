@@ -2,3 +2,7 @@
     padding: 0;
     box-sizing: 0;
 overflow: hidden; }
+
+p-ripple p-element p-menuitem-link {
+    margin-left: 25px !important;
+}

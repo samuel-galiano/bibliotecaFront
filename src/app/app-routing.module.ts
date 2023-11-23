@@ -16,15 +16,15 @@ import { TabelaVendasPorMesComponent } from './Components/tabela-vendas-por-mes/
 const routes: Routes = [
   {path: '', component: LoginInitialComponent},
   {path: 'menu-inicial', component: MenuInicialComponent, canActivate: [CustomAuthGuard]},
-  {path: 'tabela-autores', component: TabelaAutoresComponent, canActivate: [CustomAuthGuard]},
-  {path: 'tabela-editoras', component: TabelaEditorasComponent, canActivate: [CustomAuthGuard]},
-  {path: 'tabela-generos', component: TabelaGenerosComponent, canActivate: [CustomAuthGuard]},
-  {path: 'tabela-pessoas', component: TabelaPessoasComponent, canActivate: [CustomAuthGuard]},
-  {path: 'tabela-livros', component: TabelaLivrosComponent, canActivate: [CustomAuthGuard]},
-  {path: 'tabela-livros-por-autor-e-genero', component: LivrosPorAutorEGeneroComponent, canActivate: [CustomAuthGuard]},
-  {path: 'tabela-transacoes', component: TabelaTransacaoComponent, canActivate: [CustomAuthGuard]},
-  {path: 'tabela-vendas', component: TabelaVendasComponent, canActivate: [CustomAuthGuard]},
-  {path: 'tabela-vendas-por-mes', component: TabelaVendasPorMesComponent, canActivate: [CustomAuthGuard]}
+  {path: 'autores/tabela-autores', component: TabelaAutoresComponent, canActivate: [CustomAuthGuard]},
+  {path: 'editoras/tabela-editoras', component: TabelaEditorasComponent, canActivate: [CustomAuthGuard]},
+  {path: 'generos/tabela-generos', component: TabelaGenerosComponent, canActivate: [CustomAuthGuard]},
+  {path: 'pessoas/tabela-pessoas', component: TabelaPessoasComponent, canActivate: [CustomAuthGuard]},
+  {path: 'livros/tabela-livros', component: TabelaLivrosComponent, canActivate: [CustomAuthGuard]},
+  {path: 'livros/tabela-livros-por-autor-e-genero', component: LivrosPorAutorEGeneroComponent, canActivate: [CustomAuthGuard]},
+  {path: 'transacoes/tabela-transacoes', component: TabelaTransacaoComponent, canActivate: [CustomAuthGuard]},
+  {path: 'vendas/tabela-vendas', component: TabelaVendasComponent, canActivate: [CustomAuthGuard]},
+  {path: 'vendas/tabela-vendas-por-mes', component: TabelaVendasPorMesComponent, canActivate: [CustomAuthGuard]}
 ];
 
 @NgModule({

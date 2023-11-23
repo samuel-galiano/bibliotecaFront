@@ -7,11 +7,10 @@ import { MegaMenuItem, MenuItem } from 'primeng/api';
   styleUrls: ['./menu-inicial.component.css'],
 })
 export class MenuInicialComponent {
+  public items: MegaMenuItem[] = [];
 
   constructor() { }
-
-  items: MegaMenuItem[] = [];
-
+  
   ngOnInit() {
     this.items = [
       {
@@ -22,7 +21,7 @@ export class MenuInicialComponent {
             {
               label: undefined,
               icon: 'pi pi-fw pi-plus',
-              items: [{ label: 'Consultar Autores', routerLink: '/tabela-autores' }]
+              items: [{ label: 'Consultar Autores', routerLink: '/autores/tabela-autores' }]
             }
           ]
 
@@ -36,7 +35,7 @@ export class MenuInicialComponent {
             {
               label: undefined,
               icon: 'pi pi-fw pi-align-left',
-              items: [{ label: 'Consultar Editoras', routerLink: '/tabela-editoras' }]
+              items: [{ label: 'Consultar Editoras', routerLink: '/editoras/tabela-editoras' }]
             },
           ]
         ],
@@ -49,7 +48,7 @@ export class MenuInicialComponent {
             {
               label: undefined,
               icon: 'pi pi-fw pi-user-plus',
-              items: [{ label: 'Consultar Generos', routerLink: '/tabela-generos' }]
+              items: [{ label: 'Consultar Generos', routerLink: '/generos/tabela-generos' }]
             }
           ]
 
@@ -63,8 +62,8 @@ export class MenuInicialComponent {
             {
               label: undefined,
               icon: 'pi pi-fw pi-pencil',
-              items: [{ label: 'Consultar Livros', routerLink: '/tabela-livros' },
-              { label: 'Consultar Livros por Autor e Genero', routerLink: '/tabela-livros-por-autor-e-genero' }]
+              items: [{ label: 'Consultar Livros', routerLink: '/livros/tabela-livros' },
+              { label: 'Consultar Livros por Autor e Genero', routerLink: '/livros/tabela-livros-por-autor-e-genero' }]
             },
           ]
         ],
@@ -76,7 +75,7 @@ export class MenuInicialComponent {
           [
             {
               label: undefined,
-              items: [{ label: 'Consultar Pessoas', routerLink: '/tabela-pessoas' }]
+              items: [{ label: 'Consultar Pessoas', routerLink: '/pessoas/tabela-pessoas' }]
             }
           ]
         ]
@@ -88,8 +87,8 @@ export class MenuInicialComponent {
           [
             {
               label: undefined,
-              items: [{ label: 'Consultar Vendas', routerLink: '/tabela-vendas'},
-                      { label: 'Consultar Vendas do Mes', routerLink: '/tabela-vendas-por-mes' }]
+              items: [{ label: 'Consultar Vendas', routerLink: '/vendas/tabela-vendas'},
+                      { label: 'Consultar Vendas do Mes', routerLink: '/vendas/tabela-vendas-por-mes' }]
               
             }
           ]
@@ -102,7 +101,7 @@ export class MenuInicialComponent {
           [
             {
               label: 'Consultar todas as Transações',
-              items: [{ label: 'Consultar Transacoes', routerLink: '/tabela-transacoes'}]      
+              items: [{ label: 'Consultar Transacoes', routerLink: '/transacoes/tabela-transacoes'}]      
             }
           ]
         ]
