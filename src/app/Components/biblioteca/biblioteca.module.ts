@@ -7,6 +7,7 @@ import { MenuInicialComponent } from './menu-inicial/menu-inicial.component';
 import { ToastModule } from 'primeng/toast';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { DialogModule } from 'primeng/dialog';
+import { MegaMenuModule } from 'primeng/megamenu';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { DialogModule } from 'primeng/dialog';
     FormsModule,
     ToastModule,
     PanelMenuModule,
-    DialogModule
+    DialogModule,
+    MegaMenuModule
   ],
   exports: [
     LoginInitialComponent,

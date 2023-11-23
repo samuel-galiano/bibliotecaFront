@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MenuItem } from 'primeng/api';
+import { MegaMenuItem, MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-menu-inicial',
@@ -8,9 +8,9 @@ import { MenuItem } from 'primeng/api';
 })
 export class MenuInicialComponent {
 
-  constructor(){}
+  constructor() { }
 
-  items: MenuItem[] = [];
+  items: MegaMenuItem[] = [];
 
   ngOnInit() {
     this.items = [
@@ -18,81 +18,93 @@ export class MenuInicialComponent {
         label: 'Autores',
         icon: 'pi pi-fw pi-file',
         items: [
-          {
-            label: 'Consultar Todos os Autores',
-            icon: 'pi pi-fw pi-plus',
-            routerLink: '/tabela-autores'
-          }
+          [
+            {
+              label: undefined,
+              icon: 'pi pi-fw pi-plus',
+              items: [{ label: 'Consultar Autores', routerLink: '/tabela-autores' }]
+            }
+          ]
+
         ],
       },
       {
         label: 'Editoras',
         icon: 'pi pi-fw pi-pencil',
         items: [
-          {
-            label: 'Consultar Todas as Editoras',
-            icon: 'pi pi-fw pi-align-left',
-            routerLink: '/tabela-editoras'
-          },
-         
+          [
+            {
+              label: undefined,
+              icon: 'pi pi-fw pi-align-left',
+              items: [{ label: 'Consultar Editoras', routerLink: '/tabela-editoras' }]
+            },
+          ]
         ],
       },
       {
         label: 'Generos',
-        icon: 'pi pi-fw pi-user',
+        icon: 'pi pi-fw pi-paperclip',
         items: [
-          {
-            label: 'Consultar Todos os Generos',
-            icon: 'pi pi-fw pi-user-plus',
-            routerLink: '/tabela-generos'
-          }
+          [
+            {
+              label: undefined,
+              icon: 'pi pi-fw pi-user-plus',
+              items: [{ label: 'Consultar Generos', routerLink: '/tabela-generos' }]
+            }
+          ]
+
         ],
       },
       {
         label: 'Livros',
         icon: 'pi pi-fw pi-calendar',
         items: [
-          {
-            label: 'Consultar Todos os Livros',
-            icon: 'pi pi-fw pi-pencil',
-            routerLink: '/tabela-livros' 
-          },
-          {
-            label: 'Consultar Livros por Autor e Genero',
-            icon: 'pi pi-fw pi-calendar-times',
-            routerLink: '/tabela-livros-por-autor-e-genero'
-          },
+          [
+            {
+              label: undefined,
+              icon: 'pi pi-fw pi-pencil',
+              items: [{ label: 'Consultar Livros', routerLink: '/tabela-livros' },
+              { label: 'Consultar Livros por Autor e Genero', routerLink: '/tabela-livros-por-autor-e-genero' }]
+            },
+          ]
         ],
       },
       {
         label: 'Pessoas',
+        icon: 'pi pi-fw pi-users',
         items: [
-          {
-            label: 'Consultar Todas as Pessoas',
-            routerLink: '/tabela-pessoas'
-          }
+          [
+            {
+              label: undefined,
+              items: [{ label: 'Consultar Pessoas', routerLink: '/tabela-pessoas' }]
+            }
+          ]
         ]
       },
       {
         label: 'Vendas',
+        icon: 'pi pi-fw pi-tags',
         items: [
-          {
-            label: 'Consultar Todas as Vendas',
-            routerLink: '/tabela-vendas'
-          },
-          {
-            label: 'Consultar Vendas por Mes',
-            routerLink: '/tabela-vendas-por-mes'
-          }
+          [
+            {
+              label: undefined,
+              items: [{ label: 'Consultar Vendas', routerLink: '/tabela-vendas'},
+                      { label: 'Consultar Vendas do Mes', routerLink: '/tabela-vendas-por-mes' }]
+              
+            }
+          ]
         ]
       },
       {
         label: 'Transação',
+        icon: 'pi pi-fw pi-shopping-bag',
         items: [
-          {
-            label: 'Consultar todas as Transações',
-            routerLink: '/tabela-transacoes'
-          }
+          [
+            {
+              label: 'Consultar todas as Transações',
+              items: [{ label: 'Consultar Transacoes', routerLink: '/tabela-transacoes'}]      
+            }
+          ]
         ]
       }
     ];
